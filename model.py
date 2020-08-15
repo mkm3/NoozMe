@@ -18,8 +18,8 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
     username = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
-    zipcode = db.Column(db.Integer)
-    language = db.Column(db.String)
+    zipcode = db.Column(db.Integer, nullable=False)
+    language = db.Column(db.String, nullable=False)
     last_updated = db.Column(db.DateTime)
     created = db.Column(db.DateTime)
 
@@ -65,24 +65,23 @@ class Saved(db.Model):
         return f'<Saved id={self.id} user_id={self.user_id} article_id={self.article_id} notes={self.notes} rating={self.rating}>'
 
 
-class Friendship(db.Model):
+class Follower(db.Model):
     """A friendship connection."""
 
-    __tablename__ = 'friendships'
+    __tablename__ = 'followers'
 
     id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    friend_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    follower_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     created = db.Column(db.DateTime)
-    confirmed = db.Column(db.Boolean)
     
     user = db.relationship('User', primaryjoin = user_id == User.user_id)
-    friend = db.relationship('User', primaryjoin = friend_id == User.user_id)
+    follower = db.relationship('User', primaryjoin = follower_id == User.user_id)
 
     def __repr__(self):
-        return f'<Friendship id={self.id} user_id={self.user_id} friend_id={self.friend_id} created={self.created} confirmed={self.confirmed}>'
+        return f'<Follower id={self.id} user_id={self.user_id} follower_id={self.follower_id} created={self.created} confirmed={self.confirmed}>'
 
 
 class Preference(db.Model):
@@ -172,19 +171,3 @@ if __name__ == '__main__':
     # query it executes.
 
     connect_to_db(app)
-
-
-'''
-python3 -i model.py
->>> all_users = User.query.all() or User.query.all()
-
-TEST users table -
-user1 = User(fname="Max", lname="Murphy", email="mrm@gmail.com", username="murphdog777", password="password123")
-user2 = User(fname="Michelle", lname="Macaraeg", email="mkm@gmail.com", username="mikkster3", password="password123")
-
-
-
-TEST articles table -
-article1 = Article(title = "Test Article 1", image = "blah", description = "test description")
-article2 = Article(title = "Test Article 2", image = "blah", description = "test description")
-'''

@@ -1,6 +1,6 @@
 """CRUD Operations."""
 
-from model import db, User, Article, Saved, Friendship, Preference, Topic, News_Topic, User_Interest, connect_to_db
+from model import db, User, Article, Saved, Follower, Preference, Topic, News_Topic, User_Interest, connect_to_db
 
 def create_user(fname, lname, email, username, password):
     """Create and return a new user."""
