@@ -12,7 +12,6 @@ import requests
 
 
 """Server for movie ratings app."""
-
 NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
 newsapi = NewsApiClient(api_key=os.environ.get('NEWS_API_KEY'))
 
@@ -21,12 +20,12 @@ app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 
+
 @app.route('/')
 def homepage():
     """View homepage."""
 
     return render_template('homepage.html')
-
 
 
 
@@ -52,7 +51,6 @@ def getTopHeadlines():
     return response_json
 
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """Route for handling the login page logic."""
@@ -73,9 +71,14 @@ def login():
             error = "Invalid credentials"
     return render_template('login.html', error=error)
 
+
+
 @app.route('/registration', methods=['GET', 'POST'])
 def createUser():
     pass
+
+
+
 
 if __name__ == '__main__':
     connect_to_db(app)
