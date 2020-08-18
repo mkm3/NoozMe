@@ -20,9 +20,15 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def homepage():
     """View homepage."""
-
     return render_template('homepage.html')
 
+
+# @app.route('/', methods=['GET', 'POST'])
+# def index():
+#     search = MusicSearchForm(request.form)
+#     if request.method == 'POST':
+#         return search_results(search)
+#     return render_template('homepage.html', form=search)
 
 # @app.route("/")
 # def root():
@@ -43,6 +49,7 @@ def listUsers():
     return jsonify(serialized_users)
 
 
+
 @app.route('/api/top-headlines', methods=['GET'])
 def getTopHeadlines():
     keyword = request.args['keyword']
@@ -60,10 +67,11 @@ def login():
                                              User.password == request.form['password']).first()
         
         if user:
+            pass
             # create a session for this logged in user, i.e. add the user to the session
             # Now you can use this session for further interaction with the
             # redirect to their news page
-            error = f"Successfully Logged In as {user.fname} {user.lname}" <-- this is just for debugging purposes
+            # error = f"Successfully Logged In as {user.fname} {user.lname}" <-- this is just for debugging purposes
         else:
             error = "Invalid credentials"
     return render_template('login.html', error=error)
