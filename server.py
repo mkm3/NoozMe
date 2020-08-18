@@ -1,24 +1,20 @@
 
 from flask import (Flask, render_template, request, flash, session, jsonify,
                    redirect, url_for)
-from newsapi import NewsApiClient
+
+import os
 
 from model import db, connect_to_db, User
 import crud
 
-import os
 from jinja2 import StrictUndefined
 import requests
 
 
 """Server for movie ratings app."""
-NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
-newsapi = NewsApiClient(api_key=os.environ.get('NEWS_API_KEY'))
-
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
-
 
 
 @app.route('/')
@@ -27,6 +23,10 @@ def homepage():
 
     return render_template('homepage.html')
 
+
+# @app.route("/")
+# def root():
+#     return render_template('root.html')
 
 
 @app.route('/users', methods=['GET'])
@@ -43,12 +43,12 @@ def listUsers():
     return jsonify(serialized_users)
 
 
-@app.route('/top-headlines', methods=['GET'])
+@app.route('/api/top-headlines', methods=['GET'])
 def getTopHeadlines():
-    url = "https://newsapi.org/v2/everything?q=bats&apiKey=" + NEWS_API_KEY
-    response = request.get(url)
-    response_json =  response.json()
-    return response_json
+    keyword = request.args['keyword']
+    #change to newsapi.search_by_keyword(keyword)
+    res = crud.search_by_keyword(keyword)
+    return jsonify(res)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -56,8 +56,6 @@ def login():
     """Route for handling the login page logic."""
     error = None
     if request.method == 'POST':
-        print("MADE IT TO POST")
-        print(request.form)
         user = db.session.query(User).filter(User.username == request.form['username'], 
                                              User.password == request.form['password']).first()
         
@@ -74,10 +72,24 @@ def login():
 
 
 @app.route('/registration', methods=['GET', 'POST'])
-def createUser():
+def create_user():
+    """Get info from registration."""
+    
+    if request.method == 'POST':
+        crud.create_user(request.form['fname'],
+                         request.form['lname'],
+                         request.form['email'],
+                         request.form['username'],
+                         request.form['password'],
+                         request.form['zipcode'])
+
+    return render_template("registration.html")
+
+
+
+@app.route('/user/<username>')
+def profile(username):
     pass
-
-
 
 
 if __name__ == '__main__':

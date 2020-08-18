@@ -1,4 +1,4 @@
-"""Models for NewsMe app."""
+"""Models for NoozMe app."""
 
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
@@ -19,7 +19,7 @@ class User(db.Model):
     username = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     zipcode = db.Column(db.Integer, nullable=False)
-    language = db.Column(db.String, nullable=False)
+    # language = db.Column(db.String)
     last_updated = db.Column(db.DateTime)
     created = db.Column(db.DateTime)
 
@@ -82,6 +82,7 @@ class Follower(db.Model):
 
     def __repr__(self):
         return f'<Follower id={self.id} user_id={self.user_id} follower_id={self.follower_id} created={self.created} confirmed={self.confirmed}>'
+    
 
 
 class Preference(db.Model):
@@ -100,7 +101,7 @@ class Preference(db.Model):
 
     def __repr__(self):
         return f'<Preference id={self.id} user_id={self.user_id} language={self.language} zipcode={self.zipcode}>'
-
+    
 
 class Topic(db.Model):
     """A topic of interest (i.e. Technology, Finance)."""
