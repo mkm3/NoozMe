@@ -44,11 +44,6 @@ def save_article():
     pass
 
 
-'''
-MVP 1,2,3 - Finish Line
-'''
-
-
 def follow_user():
     """Follow another user."""
     pass

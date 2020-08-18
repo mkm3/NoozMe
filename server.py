@@ -60,11 +60,10 @@ def login():
                                              User.password == request.form['password']).first()
         
         if user:
-            pass
             # create a session for this logged in user, i.e. add the user to the session
             # Now you can use this session for further interaction with the
             # redirect to their news page
-            # error = f"Successfully Logged In as {user.fname} {user.lname}" <-- this is just for debugging purposes
+            error = f"Successfully Logged In as {user.fname} {user.lname}" <-- this is just for debugging purposes
         else:
             error = "Invalid credentials"
     return render_template('login.html', error=error)
