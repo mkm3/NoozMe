@@ -6,6 +6,7 @@ import os
 
 from model import db, connect_to_db, User
 import crud
+import news
 
 from jinja2 import StrictUndefined
 import requests
@@ -34,7 +35,6 @@ def homepage():
 # def root():
 #     return render_template('root.html')
 
-
 @app.route('/users', methods=['GET'])
 def listUsers():
     users = User.query.all()
@@ -50,11 +50,11 @@ def listUsers():
 
 
 
-@app.route('/api/top-headlines', methods=['GET'])
+@app.route('/api/newsapi', methods=['GET'])
 def getTopHeadlines():
     keyword = request.args['keyword']
     #change to newsapi.search_by_keyword(keyword)
-    res = crud.search_by_keyword(keyword)
+    res = news.search_by_keyword(keyword)
     return jsonify(res)
 
 

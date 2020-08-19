@@ -47,12 +47,11 @@ saved_list = [saved1, saved2, saved3, saved4, saved5, saved6]
 db.session.add_all(saved_list)
 
 #Test followers
-follower1 = Follower(user=user1, follower=user2, created=datetime.datetime())
-follower2 = Follower(user=user2, follower=user3, created=datetime.datetime())
-follower3 = Follower(user=user3, follower=user4, created=datetime.datetime())
-follower4 = Follower(user=user4, follower=user5, created=datetime.datetime())
-follower5 = Follower(user=user5, follower=user6, created=datetime.datetime())
-follower6 = Follower(user=user6, follower=user1, created=datetime.datetime())
+follower1 = Follower(user=user1, follower=user2, created=datetime.now())
+follower2 = Follower(user=user2, follower=user3, created=datetime.now())
+follower3 = Follower(user=user3, follower=user4, created=datetime.now())
+follower4 = Follower(user=user4, follower=user5, created=datetime.now())
+follower5 = Follower(user=user5, follower=user1, created=datetime.now())
 
 #Test user_preferences
 pref1 = Preference(user=user1, language="us", zipcode=94709)
@@ -61,7 +60,7 @@ pref3 = Preference(user=user3, language="us", zipcode=94518)
 pref4 = Preference(user=user4, language="us", zipcode=94498)
 pref5 = Preference(user=user5, language="us", zipcode=94111)
 
-user_preferences = [pref1, pref2, pref3, pref4, pref5, pref6]
+user_preferences = [pref1, pref2, pref3, pref4, pref5]
 db.session.add_all(user_preferences)
 
 

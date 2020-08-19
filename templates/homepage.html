@@ -1,4 +1,4 @@
-  <title>Bootstrap Exercise</title>
+  <title>NoozMe - Home</title>
 
   <!-- Load Bootstrap 4 -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -50,23 +50,37 @@
   </div>
   </nav>
 
-  <div class="container">
 
-    <div class="row">
-      <div class="col-8 offset-4 mx-auto">
-        NoozMe
+
+<div class="container">
+      
+      <h3 class="center" style="margin-bottom:20px;">NoozMe Search Engine <i class="material-icons medium hide-on-small-only" id="icons"></i></h3>
+      
+      <form action="/api/newsapi" method='get'>
+          <div class="input-field">
+              <i class="material-icons prefix">Search</i>
+              <input type="text" id="searchquery">
+              <label>...</label>
+          </div>
+          
+          <div class="row">
+             <input type="submit" id="searchbtn" class="btn col m2 s12" value="search">
+             <input type="reset" id="searchbtn" class="btn col m2 s12 red right" value="clear"  style="margin-top:3px;">
+          </div>
+          
+      </form>
+      
+      <div id="loader" style="display:none;">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
       </div>
-    </div>
+      
+      <div class="row">
+         <div id="newsResults"></div>
+      </div>
 
   </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -76,3 +90,10 @@ further study. Leave this at the bottom and code above it. -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/static/iconChanger.js"></script>
+<script src="/static/newsapi.js"></script>
+
+</body>
+</html>
