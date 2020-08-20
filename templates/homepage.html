@@ -49,11 +49,28 @@
         </li>
       </ul>
     </div>
-
+  </nav>
     
     <!-- MVP Search Engine -->
-    
-  </nav>
+
+    <div class="container">
+
+      <form action="/api/newsapi" method='get'>
+          <div class="input-field">
+              <i class="material-icons prefix">Search</i>
+              <input type="text" id="searchquery">
+              <input type="submit" id="searchbtn" value="search">
+              <input type="reset" id="searchbtn" value="clear"  style="margin-top:3px;">
+          </div>
+
+      </form>
+
+      <div id="loader" style="display:none;">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+
 
 
 

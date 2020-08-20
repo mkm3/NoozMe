@@ -13,8 +13,8 @@
         <input type="password" placeholder="Password" name="password">
         <input class="btn btn-default" type="submit" value="Login">
       </form>
-      {% if error %}
-        <p class="error"><strong>Error:</strong> {{ error }}
+      {% if login %}
+        <p class="login"><strong>Error:</strong> {{ login }}
       {% endif %}
     </div>
   </body>

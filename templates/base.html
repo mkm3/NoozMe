@@ -1,0 +1,38 @@
+{% comment %} 
+<!doctype html>
+<html>
+
+
+    <head>
+
+    <title>{% block title %}TITLE HERE{% endblock %}</title>
+    
+    <!-- Load Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Load Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
+
+    <!-- Load our stylesheet -->
+    <link rel="stylesheet"href="/static/css/styles.css">
+
+    </head>
+
+
+    <body>
+
+        <div class="container">
+            <h1>
+                <a href="/">It&rsquo;s My After-Party!</a>
+            </h1>
+            {% for msg in get_flashed_messages() %}
+                <div class="alert alert-info">{{ msg }}</div>
+            {% endfor %}
+
+            {% block content %}CONTENT HERE{% endblock %}
+        </div>
+
+    </body>
+
+
+</html> {% endcomment %}

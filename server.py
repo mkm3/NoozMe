@@ -61,7 +61,7 @@ def getTopHeadlines():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """Route for handling the login page logic."""
-    error = None
+    login = None
     if request.method == 'POST':
         user = db.session.query(User).filter(User.username == request.form['username'], 
                                              User.password == request.form['password']).first()
@@ -73,8 +73,8 @@ def login():
             # redirect to their news page
             # error = f"Successfully Logged In as {user.fname} {user.lname}" <-- this is just for debugging purposes
         else:
-            error = "Invalid credentials"
-    return render_template('login.html', error=error)
+            login = "Invalid credentials"
+    return render_template('login.html', login=login)
 
 
 
