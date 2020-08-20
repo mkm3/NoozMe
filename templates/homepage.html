@@ -13,74 +13,76 @@
 
 <body>
 
-<!-- Code goes here. -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">NoozMe</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">  
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>  
+<!-- Navbar collapsed -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">NoozMe</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">  
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>  
 
-    </ul>
+      </ul>
 
 
+  <!-- Navbar showing nav-links -->
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
 
-    <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Saved News</a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">Saved News</a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Account Preferences</a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">Account Preferences</a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+      </ul>
+    </div>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
-      </li>
-    </ul>
-  </div>
+    
+    <!-- MVP Search Engine -->
+    
   </nav>
 
-
-
-<div class="container">
+  <div>
       
-      <h3 class="center" style="margin-bottom:20px;">NoozMe Search Engine <i class="material-icons medium hide-on-small-only" id="icons"></i></h3>
-      
-      <form action="/api/newsapi" method='get'>
-          <div class="input-field">
-              <i class="material-icons prefix">Search</i>
-              <input type="text" id="searchquery">
-              <label>...</label>
-          </div>
-          
-          <div class="row">
-             <input type="submit" id="searchbtn" class="btn col m2 s12" value="search">
-             <input type="reset" id="searchbtn" class="btn col m2 s12 red right" value="clear"  style="margin-top:3px;">
-          </div>
-          
-      </form>
-      
-      <div id="loader" style="display:none;">
-        <div class="progress">
-          <div class="indeterminate"></div>
+    <form action="/api/newsapi" method='get'>
+        <div class="input-field">
+            <label>Search</label>
+            <input type="text" id="searchquery">
+            <input type="submit" id="searchbtn"value="search">
+            <input type="reset" id="searchbtn"  value="clear"  style="margin-top:3px;">
         </div>
-      </div>
-      
-      <div class="row">
-         <div id="newsResults"></div>
-      </div>
-
+        
+    </form>
   </div>
+
+
+      
+      
+    <div class="row">
+      <div id="newsResults"></div>
+    </div>
+
+
+<!-- MVP Custom Form -->
+
+
+
+
+
+
+
 
 
 
@@ -92,7 +94,6 @@ further study. Leave this at the bottom and code above it. -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="/static/iconChanger.js"></script>
 <script src="/static/newsapi.js"></script>
 
 </body>

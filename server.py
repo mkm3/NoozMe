@@ -24,12 +24,12 @@ def homepage():
     return render_template('homepage.html')
 
 
-# @app.route('/', methods=['GET', 'POST'])
-# def index():
-#     search = MusicSearchForm(request.form)
-#     if request.method == 'POST':
-#         return search_results(search)
-#     return render_template('homepage.html', form=search)
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    search = MusicSearchForm(request.form)
+    if request.method == 'POST':
+        return search_results(search)
+    return render_template('homepage.html', form=search)
 
 # @app.route("/")
 # def root():
