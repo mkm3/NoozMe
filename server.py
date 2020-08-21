@@ -74,7 +74,7 @@ def login():
             # error = f"Successfully Logged In as {user.fname} {user.lname}" <-- this is just for debugging purposes
         else:
             login = "Invalid credentials"
-    return render_template('login.html', login=login)
+    return render_template('registration.html', login=login)
 
 
 
@@ -89,14 +89,20 @@ def create_user():
                          request.form['username'],
                          request.form['password'],
                          request.form['zipcode'])
+        return redirect('/login')
+        
+    else:
+        flash('Cannot create an account with that email. Try again.')
 
     return render_template("registration.html")
 
 
-
-@app.route('/user/<username>')
-def profile(username):
-    pass
+# TRYING TO SHOW SAVED NEWS / PROFILE SETTINGS
+# @app.route('/user/<user_id>')
+# def show_profile(user_id):
+#     """Shows user profile"""
+#     user = crud.get_user_by_id(user_id)
+#     return render_template('/profile_settings.html', user=user)
 
 
 if __name__ == '__main__':

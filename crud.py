@@ -19,9 +19,9 @@ def create_user(fname, lname, email, username, password, zipcode):
 
     return user
 
-def login():
-    """User login and session"""
-    pass
+def get_user_by_id(user_id):
+    """Return a user by primary key"""
+    return User.query.get(user_id)
 
 
 def search_by_custom_fields():
