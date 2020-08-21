@@ -71,11 +71,8 @@
         </div>
       </div>
 
-
-
-
       
-      
+    <!-- display news results here -->
     <div class="row">
       <div id="newsResults"></div>
     </div>
@@ -83,10 +80,107 @@
 
 <!-- MVP Custom Form -->
 
+      <form action="/api/newsapi" method='get'>
 
+        <p>Language:
+          <select name="language">
+            <option value="ar"> Arabic </option>
+            <option value="de"> German </option>
+            <option value="en"> English </option>
+            <option value="es"> Spanish </option>
+            <option value="fr"> French </option>
+            <option value="he"> Hebrew </option>
+            <option value="it"> Italy </option>
+            <option value="nl"> Dutch </option>
+            <option value="no"> Norwegian </option>
+            <option value="pt"> Portuguese </option>
+            <option value="ru"> Russian </option>
+            <option value="se"> Swedish </option>
+            <option value="zh"> Chinese </option>
+          </select>
+        </p>
 
+        <p>Category (pick more than one):
+          <br />
+          <input type="checkbox" name="category"
+                  value ="business" /> business
+          <input type="checkbox" name="category"
+                  value ="entertainment" /> entertainment
+          <input type="checkbox" name="category"
+                  value ="general" /> general
+          <input type="checkbox" name="category"
+                  value ="health" /> health
+          <input type="checkbox" name="category"
+                  value ="science" /> science
+          <input type="checkbox" name="category"
+                  value ="sports" /> sports
+          <input type="checkbox" name="category"
+                  value ="technology" /> technology
+        </p>
 
+        <p>Country (pick more than one):
+          <br />
+          <input type="checkbox" name="country" value ="ar"/> Argentina
+          <input type="checkbox" name="country" value ="au"/> Australia
+          <input type="checkbox" name="country" value ="at"/> Austria
+          <input type="checkbox" name="country" value ="be"/> Belgium
+          <input type="checkbox" name="country" value ="br"/> Brazil
+          <input type="checkbox" name="country" value ="bg"/> Bulgaria
+          <input type="checkbox" name="country" value ="ca"/> Canada
+          <input type="checkbox" name="country" value ="cn"/> China
+          <input type="checkbox" name="country" value ="co"/> Columbia
+          <input type="checkbox" name="country" value ="cu"/> Cuba
+          <input type="checkbox" name="country" value ="cz"/> Czech Republic
+          <input type="checkbox" name="country" value ="eg"/> Eqypt
+          <input type="checkbox" name="country" value ="fr"/> France
+          <input type="checkbox" name="country" value ="de"/> Germany
+          <input type="checkbox" name="country" value ="gr"/> Greece
+          <input type="checkbox" name="country" value ="hk"/> Hong Kong
+          <input type="checkbox" name="country" value ="hu"/> Hungary
 
+          <input type="checkbox" name="country" value ="in"/> India
+          <input type="checkbox" name="country" value ="id"/> Indonesia
+          <input type="checkbox" name="country" value ="ie"/> Ireland
+          <input type="checkbox" name="country" value ="il"/> Israel
+          <input type="checkbox" name="country" value ="it"/> Italy
+          <input type="checkbox" name="country" value ="jp"/> Japan
+          <input type="checkbox" name="country" value ="lv"/> Latvia
+          <input type="checkbox" name="country" value ="lt"/> Lithuania
+          <input type="checkbox" name="country" value ="my"/> Malaysia
+          <input type="checkbox" name="country" value ="mx"/> Mexico
+          <input type="checkbox" name="country" value ="ma"/> Morocco
+          <input type="checkbox" name="country" value ="nl"/> Netherlands
+          <input type="checkbox" name="country" value ="nz"/> New Zealand
+          <input type="checkbox" name="country" value ="ng"/> Nigeria
+          <input type="checkbox" name="country" value ="no"/> Norway
+          <input type="checkbox" name="country" value ="ph"/> Philippines
+          <input type="checkbox" name="country" value ="pl"/> Poland
+          <input type="checkbox" name="country" value ="pt"/> Portugal
+
+          <input type="checkbox" name="country" value ="ro"/> Romania
+          <input type="checkbox" name="country" value ="ru"/> Russia
+          <input type="checkbox" name="country" value ="sa"/> Saudi Arabia
+          <input type="checkbox" name="country" value ="rs"/> Serbia
+          <input type="checkbox" name="country" value ="sg"/> Singapore
+          <input type="checkbox" name="country" value ="sk"/> Slovakia
+          <input type="checkbox" name="country" value ="si"/> Slovenia
+          <input type="checkbox" name="country" value ="za"/> South Africa
+          <input type="checkbox" name="country" value ="kr"/> South Korea
+          <input type="checkbox" name="country" value ="se"/> Sweden
+          <input type="checkbox" name="country" value ="ch"/> Switzerland
+          <input type="checkbox" name="country" value ="tw"/> Taiwan
+          <input type="checkbox" name="country" value ="th"/> Thailand
+          <input type="checkbox" name="country" value ="tr"/> Turkey
+          <input type="checkbox" name="country" value ="ae"/> UAE
+          <input type="checkbox" name="country" value ="ua"/> Ukraine
+          <input type="checkbox" name="country" value ="gb"/> United Kingdom
+          <input type="checkbox" name="country" value ="us"/> United States
+          <input type="checkbox" name="country" value ="ve"/> Venuzuela
+
+        </p>
+
+        <p><input type="submit"></p>
+      </form>
 
 
 
