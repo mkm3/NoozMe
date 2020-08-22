@@ -24,10 +24,6 @@ def homepage():
     return render_template('homepage.html')
 
 
-# @app.route("/")
-# def root():
-#     return render_template('root.html')
-
 @app.route('/users', methods=['GET'])
 def listUsers():
     users = User.query.all()
@@ -44,12 +40,28 @@ def listUsers():
 
 @app.route('/api/newsapi', methods=['GET'])
 def getTopHeadlines():
+    """Get top headlines."""
     keyword = request.args['keyword']
     #change to newsapi.search_by_keyword(keyword)
     res = news.search_by_keyword(keyword)
     return jsonify(res)
 
 
+def get_logged_in_user():
+    """Grabs user information by user_id."""
+    user = User.query.get(session['user_id'])
+    return user
+
+
+def is_logged_in():
+    """Checks if a user is logged in."""
+    if 'user_id' in session:
+        return True
+    
+    else:
+        return False
+        
+    
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -60,9 +72,8 @@ def login():
                                              User.password == request.form['password']).first()
         
         if user:
-            user_dict = {'fname': user.fname,
-                    'lname': user.lname}
-            session['user'] = user_dict
+            user_id = user.user_id
+            session['user_id'] = user_id
             return redirect('/dashboard')
             # create a session for this logged in user, i.e. add the user to the session
             # Now you can use this session for further interaction with the
@@ -93,9 +104,11 @@ def create_user():
 @app.route('/dashboard', methods=['GET'])
 def logged_in():
     """Redirect users to dashboard after login"""
-    user = session['user']
-    print(f"Successfully logged in as {user['fname']} {user['lname']}")
+    user = get_logged_in_user()
+    print(f"Successfully logged in as {user.fname} {user.lname}")
     return render_template('dashboard.html')
+
+
 # TRYING TO SHOW SAVED NEWS / PROFILE SETTINGS
 # @app.route('/user/<user_id>')
 # def show_profile(user_id):
