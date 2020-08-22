@@ -24,13 +24,6 @@ def homepage():
     return render_template('homepage.html')
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    search = MusicSearchForm(request.form)
-    if request.method == 'POST':
-        return search_results(search)
-    return render_template('homepage.html', form=search)
-
 # @app.route("/")
 # def root():
 #     return render_template('root.html')
@@ -49,13 +42,13 @@ def listUsers():
     return jsonify(serialized_users)
 
 
-
 @app.route('/api/newsapi', methods=['GET'])
 def getTopHeadlines():
     keyword = request.args['keyword']
     #change to newsapi.search_by_keyword(keyword)
     res = news.search_by_keyword(keyword)
     return jsonify(res)
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -67,15 +60,15 @@ def login():
                                              User.password == request.form['password']).first()
         
         if user:
-            pass
+            user_dict = {'fname': user.fname,
+                    'lname': user.lname}
+            session['user'] = user_dict
+            return redirect('/dashboard')
             # create a session for this logged in user, i.e. add the user to the session
             # Now you can use this session for further interaction with the
-            # redirect to their news page
-            # error = f"Successfully Logged In as {user.fname} {user.lname}" <-- this is just for debugging purposes
-        else:
-            login = "Invalid credentials"
-    return render_template('registration.html', login=login)
-
+            # redirect to their news page        else:
+    login = "Invalid credentials"
+    return render_template('login.html', login=login)
 
 
 @app.route('/registration', methods=['GET', 'POST'])
@@ -92,11 +85,17 @@ def create_user():
         return redirect('/login')
         
     else:
-        flash('Cannot create an account with that email. Try again.')
+        flash("Cannot create an account with that email. Try again.")
 
-    return render_template("registration.html")
+    return render_template('registration.html')
 
 
+@app.route('/dashboard', methods=['GET'])
+def logged_in():
+    """Redirect users to dashboard after login"""
+    user = session['user']
+    print(f"Successfully logged in as {user['fname']} {user['lname']}")
+    return render_template('dashboard.html')
 # TRYING TO SHOW SAVED NEWS / PROFILE SETTINGS
 # @app.route('/user/<user_id>')
 # def show_profile(user_id):
