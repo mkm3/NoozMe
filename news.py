@@ -12,13 +12,18 @@ def get_everything(keyword):
     res = requests.get(url)
     return res.json()
 
-
 def get_sources():
     pass
 
 
-def search_by_keyword(keyword):
-    """Search article by keyword search engine."""
-    everything = get_everything(keyword=keyword)
-    return everything
+def get_top(country="", category=""):
+    url = f"http://newsapi.org/v2/top-headlines?apiKey={NEWS_API_KEY}"
+    
+    if country:
+        url = url + f"&country={country}"
+    if category:
+        url = url + f"&category={category}"
+    print(url)
+    res = requests.get(url)
+    return res.json()
 

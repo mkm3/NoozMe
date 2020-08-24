@@ -24,26 +24,20 @@ def homepage():
     return render_template('homepage.html')
 
 
-@app.route('/users', methods=['GET'])
-def listUsers():
-    users = User.query.all()
-    serialized_users = []
-    for user in users:
-        serialized_users.append({
-            'fname': user.fname,
-            'lname': user.lname,
-            'username': user.username,
-            'email': user.email
-        })
-    return jsonify(serialized_users)
-
-
-@app.route('/api/newsapi', methods=['GET'])
-def getTopHeadlines():
-    """Get top headlines."""
+@app.route('/api/newsapi/everything', methods=['GET'])
+def get_everything():
+    """Get everything by keyword."""
     keyword = request.args['keyword']
-    #change to newsapi.search_by_keyword(keyword)
-    res = news.search_by_keyword(keyword)
+    res = news.get_everything(keyword)
+    return jsonify(res)
+
+
+@app.route('/api/newsapi/top', methods=['GET'])
+def get_top():
+    """Get top headlines by category and country."""
+    country = request.args['country']
+    category = request.args['category']
+    res = news.get_top(country=country, category=category)
     return jsonify(res)
 
 
@@ -57,7 +51,7 @@ def is_logged_in():
     """Checks if a user is logged in."""
     if 'user_id' in session:
         return True
-    
+
     else:
         return False
         
@@ -106,7 +100,7 @@ def logged_in():
     """Redirect users to dashboard after login"""
     user = get_logged_in_user()
     print(f"Successfully logged in as {user.fname} {user.lname}")
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', user=user)
 
 
 # TRYING TO SHOW SAVED NEWS / PROFILE SETTINGS
