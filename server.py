@@ -69,11 +69,35 @@ def login():
             user_id = user.user_id
             session['user_id'] = user_id
             return redirect('/dashboard')
-            # create a session for this logged in user, i.e. add the user to the session
-            # Now you can use this session for further interaction with the
-            # redirect to their news page        else:
-    login = "Invalid credentials"
+        
+        else:
+            login = "Invalid credentials"
+            
     return render_template('login.html', login=login)
+
+
+@app.route("/save-article", methods=["POST"])
+def save_article():
+    """Save article to user's profile/saved_news table."""
+
+    title = request.form.get("title")
+    urlToImage = request.form.get("urlToImage")
+    description = request.form.get("description")
+    content = request.form.get("content")
+    publishedAt = request.form.get("publishedAt")
+    url = request.form.get("url")
+    
+    get_logged_in_user()
+    crud.save_article(title=title,
+                      image=urlToImage,
+                      description=description,
+                      content=content,
+                      pub_date=publishedAt,
+                      news_url=url,
+                      user_id=user_id,
+                      article_id=article_id)
+
+    return "Article has been saved!"
 
 
 @app.route('/registration', methods=['GET', 'POST'])

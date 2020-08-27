@@ -24,14 +24,56 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
-        </li>  
+        </li> 
 
-        <li>
-          Category 
+
+
+  <!-- Navbar showing nav-links -->
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="#">Saved News</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Account Preferences</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+    
+
+    <!-- MVP Search Engine -->
+    <div class="container">
+
+      <form action="/api/newsapi" method='get'>
+          <div class="input-field">
+              <p>You've successfully logged in as {{user.fname}} {{user.lname}}.</p>
+              <i class="material-icons prefix">Search</i>
+              <input type="text" id="searchquery">
+              <input type="submit" id="searchbtn" value="search">
+              <input type="reset" id="searchbtn" value="clear"  style="margin-top:3px;">
+          </div>
+
+      </form>
+
+      <div id="loader" style="display:none;">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+
+
         <form>
-          <select name="Categories" id="category_selector">
+          Category
+          <select name="Categories" id="category_selector"> Category
           <br />
             <option value=""> Select </option>
             <option value="business"> Business </option>
@@ -44,10 +86,8 @@
           </select>      
         </form>
 
-      <li>
-        Source by Country 
-      </li>
         <form>
+          Source by Country 
           <select id="country_selector">
           <br />
             <option value=""> Select </option>
@@ -110,51 +150,6 @@
           </select>
       </form>
       </ul>
-
-
-
-  <!-- Navbar showing nav-links -->
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Saved News</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Account Preferences</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-    
-
-    <!-- MVP Search Engine -->
-    <div class="container">
-
-      <form action="/api/newsapi" method='get'>
-          <div class="input-field">
-              <p>You've successfully logged in as {{user.fname}} {{user.lname}}.</p>
-              <i class="material-icons prefix">Search</i>
-              <input type="text" id="searchquery">
-              <input type="submit" id="searchbtn" value="search">
-              <input type="reset" id="searchbtn" value="clear"  style="margin-top:3px;">
-          </div>
-
-      </form>
-
-      <div id="loader" style="display:none;">
-        <div class="progress">
-          <div class="indeterminate"></div>
-        </div>
-      </div>
-
 
 
       <!-- display news results here -->

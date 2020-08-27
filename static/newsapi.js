@@ -5,9 +5,7 @@ $(document).ready(function(){
   let find_and_populate_top_headlines = function() {
 
     let country = $("#country_selector").val();
-    console.log(country);
     let category = $("#category_selector").val();
-    console.log(category);
     let url = `/api/newsapi/top?country=${country}&category=${category}`;
 
     
@@ -83,6 +81,7 @@ $(document).ready(function(){
     let output = "";
     let latestNews = news.articles;
 
+    
     for(var i in latestNews){
       output +=`
         <div class="col l6 m6 s12">
@@ -93,14 +92,14 @@ $(document).ready(function(){
             <p>Published on: ${latestNews[i].publishedAt}</p>
             <a href="${latestNews[i].url}" class="btn">Read more</a>
 
-          <form>
-            <input type="hidden" name="title" value=${latestNews[i].title}>
-            <input type="hidden" name="urlToImage" value=${latestNews[i].urlToImage}>
-            <input type="hidden" name="description" value=${latestNews[i].description}>
-            <input type="hidden" name="content" value=${latestNews[i].content}>
-            <input type="hidden" name="publishedAt" value=${latestNews[i].publishedAt}>
-            <input type="hidden" name="url" value=${latestNews[i].url}>
-            <a class="btn" id="btn_${i}">Save Article</a>
+          <form class="save-article-form">
+            <input type="hidden" name="title" value="${latestNews[i].title}">
+            <input type="hidden" name="urlToImage" value="${latestNews[i].urlToImage}">
+            <input type="hidden" name="description" value="${latestNews[i].description}">
+            <input type="hidden" name="content" value="${latestNews[i].content}">
+            <input type="hidden" name="publishedAt" value="${latestNews[i].publishedAt}">
+            <input type="hidden" name="url" value="${latestNews[i].url}">
+            <button>Save Article</button>
           </form>
         </div>
         
@@ -108,10 +107,33 @@ $(document).ready(function(){
     }
 
       // spits out html output for our div id #newsResults
-    if(output !== ""){
-      $("#newsResults").html(output);
-    }
+      if(output !== ""){
+        $("#newsResults").html(output);
 
+
+        //grabs form inputs and submits them to the saved_news tables
+        $('.save-article-form').on('submit', (evt) => {
+          evt.preventDefault();
+
+
+          const formInputs = {
+            'title': evt.target[0].value,
+            'urlToImage': evt.target[1].value,
+            'description': evt.target[2].value,
+            'content': evt.target[3].value,
+            'publishedAt': evt.target[4].value,
+            'url': evt.target[5].value
+            
+          };
+        
+        console.log(formInputs)
+
+      $.post('/save-article', formInputs, (res) => {
+        alert(res);
+      });
+
+    });
+  }
     //after search, response if no news is available
     else{
       let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;

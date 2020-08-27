@@ -24,15 +24,32 @@ def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 
-def search_by_custom_fields():
-    """Search article by custom fields."""
-    pass
-
-
-def save_article():
+def save_article(title,image,description,content,pub_date,news_url,user_id,article_id,):
     """Save an article to your profile."""
-    pass
+    article = Article(title=title,
+                    image=image,
+                    description=description,
+                    content = content,
+                    pub_date=pub_date,
+                    news_url=news_url
+                    )
+    
+    
+    db.session.add(article)
+    db.session.commit()
+    
+    print(article)
+    
+    # 2.0 add rating and notes during save event
+    saved_article = Saved(user_id=user_id,
+                          article_id=article_id)
+                        #   notes=notes,
+                        #   rating=rating)
+    
+    db.session.add(saved_article)
+    db.session.commit()
 
+    print(saved_article)
 
 def follow_user():
     """Follow another user."""

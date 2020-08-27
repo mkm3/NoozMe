@@ -38,6 +38,7 @@ class Article(db.Model):
     title = db.Column(db.String)
     image = db.Column(db.String)
     description = db.Column(db.String)
+    content = db.Column(db.String)
     pub_date = db.Column(db.DateTime)
     news_url = db.Column(db.String)
 

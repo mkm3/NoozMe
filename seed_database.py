@@ -26,11 +26,11 @@ users = [user1, user2, user3, user4, user5]
 db.session.add_all(users)
 
 #Test articles
-article1 = Article(title = "Test Article 1", image = "blah", description = "test description", pub_date = datetime.now(), news_url = "blahURL")
-article2 = Article(title = "Test Article 2", image = "blah", description = "test description", pub_date = datetime.now(), news_url = "blahURL")
-article3 = Article(title = "Test Article 3", image = "blah", description = "test description", pub_date = datetime.now(), news_url = "blahURL")
-article4 = Article(title = "Test Article 4", image = "blah", description = "test description", pub_date = datetime.now(), news_url = "blahURL")
-article5 = Article(title = "Test Article 5", image = "blah", description = "test description", pub_date = datetime.now(), news_url = "blahURL")
+article1 = Article(title = "Test Article 1", image = "blah", description = "test description", content = "test content", pub_date = datetime.now(), news_url = "blahURL")
+article2 = Article(title = "Test Article 2", image = "blah", description = "test description", content = "test content", pub_date = datetime.now(), news_url = "blahURL")
+article3 = Article(title = "Test Article 3", image = "blah", description = "test description", content = "test content", pub_date = datetime.now(), news_url = "blahURL")
+article4 = Article(title = "Test Article 4", image = "blah", description = "test description", content = "test content", pub_date = datetime.now(), news_url = "blahURL")
+article5 = Article(title = "Test Article 5", image = "blah", description = "test description", content = "test content", pub_date = datetime.now(), news_url = "blahURL")
 
 articles = [article1, article2, article3, article4, article5]
 db.session.add_all(articles)
