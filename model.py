@@ -65,7 +65,8 @@ class Saved(db.Model):
     def __repr__(self):
         return f'<Saved id={self.id} user_id={self.user_id} article_id={self.article_id} notes={self.notes} rating={self.rating}>'
 
-
+#TODO change to 'Subscription' class
+#TODO change to tablename to 'subscriptions'
 class Follower(db.Model):
     """A friendship connection."""
 

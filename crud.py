@@ -24,7 +24,12 @@ def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 
-def save_article(title,image,description,content,pub_date,news_url,user_id,article_id,):
+def get_article_by_id(article_id):
+    """Return a user by primary key"""
+    return Article.query.get(article_id)
+
+
+def save_article(title,image,description,content,pub_date,news_url,user):
     """Save an article to your profile."""
     article = Article(title=title,
                     image=image,
@@ -34,23 +39,43 @@ def save_article(title,image,description,content,pub_date,news_url,user_id,artic
                     news_url=news_url
                     )
     
-    
     db.session.add(article)
-    db.session.commit()
     
+    #testing
     print(article)
     
     # 2.0 add rating and notes during save event
-    saved_article = Saved(user_id=user_id,
-                          article_id=article_id)
+    #creating the relationship between user and the saved article
+    saved_article = Saved(user=user,
+                          article=article)
                         #   notes=notes,
                         #   rating=rating)
     
     db.session.add(saved_article)
     db.session.commit()
 
+    #testing
     print(saved_article)
 
+
+def get_saved_news(user):
+    """Grab saved news to render."""
+    
+    saved_news_feed = []
+    
+    for entry in user.saved_news:
+        article = entry.article
+        article_item = {
+            "title" : article.title,
+            "image" : article.image,
+            "description" : article.description,
+            "content" : article.content,
+            "pub_date" : article.news_url
+        }
+        saved_news_feed.append(article_item)
+    print(saved_news_feed)
+    return saved_news_feed               
+                        
 def follow_user():
     """Follow another user."""
     pass

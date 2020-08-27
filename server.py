@@ -87,15 +87,17 @@ def save_article():
     publishedAt = request.form.get("publishedAt")
     url = request.form.get("url")
     
-    get_logged_in_user()
+#user_id
+#article_id
+    
+    user = get_logged_in_user()
     crud.save_article(title=title,
                       image=urlToImage,
                       description=description,
                       content=content,
                       pub_date=publishedAt,
                       news_url=url,
-                      user_id=user_id,
-                      article_id=article_id)
+                      user=user)
 
     return "Article has been saved!"
 
