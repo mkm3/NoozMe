@@ -46,12 +46,14 @@ saved6 = Saved(user = user5, article = article5, notes="surprising read", rating
 saved_list = [saved1, saved2, saved3, saved4, saved5, saved6]
 db.session.add_all(saved_list)
 
-#Test followers
-follower1 = Follower(user=user1, follower=user2, created=datetime.now())
-follower2 = Follower(user=user2, follower=user3, created=datetime.now())
-follower3 = Follower(user=user3, follower=user4, created=datetime.now())
-follower4 = Follower(user=user4, follower=user5, created=datetime.now())
-follower5 = Follower(user=user5, follower=user1, created=datetime.now())
+#Test subscriptions
+subscription1 = Subscription(user=user1, subscribe_to=user2, created=datetime.now())
+subscription2 = Subscription(user=user2, subscribe_to=user3, created=datetime.now())
+subscription3 = Subscription(user=user3, subscribe_to=user4, created=datetime.now())
+subscription4 = Subscription(user=user4, subscribe_to=user5, created=datetime.now())
+subscription5 = Subscription(user=user5, subscribe_to=user1, created=datetime.now())
+#TODO create subscription lists
+#TODO db.session.add_all(subscriptions)
 
 #Test user_preferences
 pref1 = Preference(user=user1, language="us", zipcode=94709)
@@ -102,36 +104,3 @@ db.session.add_all(user_interests)
 
 #commit all tests to database tables
 db.session.commit()
-
-# with open('data/articles.json') as f:
-#     article_data = json.loads(f.read())
-
-# print(article_data)
-
-# # Create movies, store them in list so we can use them
-# # to create fake ratings
-# movies_in_db = []
-# for movie in movie_data:
-#     title, overview, poster_path = (movie['title'],
-#                                     movie['overview'],
-#                                     movie['poster_path'])
-#     release_date = datetime.strptime(movie['release_date'], '%Y-%m-%d')
-
-#     db_movie = crud.create_movie(title,
-#                                  overview,
-#                                  release_date,
-#                                  poster_path)
-#     movies_in_db.append(db_movie)
-
-# # Create 10 users; each user will make 10 ratings
-# for n in range(10):
-#     email = f'user{n}@test.com'  # Voila! A unique email!
-#     password = 'test'
-
-#     user = crud.create_user(email, password)
-
-#     for _ in range(10):
-#         random_movie = choice(movies_in_db)
-#         score = randint(1, 5)
-
-#         crud.create_rating(user, random_movie, score)

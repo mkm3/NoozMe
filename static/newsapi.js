@@ -1,6 +1,56 @@
 //Functions to run search engine and custom form
 $(document).ready(function(){
   
+  function showNews(news) {
+        
+    let output = "";
+    
+    for(var i in news){
+      output +=`
+        <div class="col l6 m6 s12">
+            <h4>${news[i].title}</h4>
+            <img src="${news[i].urlToImage}" class="responsive-img">
+            <p>${news[i].description}</p>
+            <p>${news[i].content}</p>
+            <p>Published on: ${news[i].publishedAt}</p>
+            <a href="${news[i].url}" class="btn">Read more</a>
+
+          <form class="save-article-form">
+            <input type="hidden" name="title" value="${news[i].title}">
+            <input type="hidden" name="image" value="${news[i].image}">
+            <input type="hidden" name="description" value="${news[i].description}">
+            <input type="hidden" name="content" value="${news[i].content}">
+            <input type="hidden" name="pub_date" value="${news[i].pub_date}">
+            <input type="hidden" name="news_url" value="${news[i].news_url}">
+            <button>Save Article</button>
+          </form>
+        </div>
+      `;
+
+    }
+    
+    if(output !== ""){
+      $("#newsResults").html(output);
+        M.toast({
+        html: "There you go, nice reading",
+        classes: 'green'
+      });
+      
+    }else{
+      let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;
+        $("#newsResults").html(noNews);
+      M.toast({
+        html: "This news isn't available",
+        classes: 'red'
+      });
+    }  
+  }
+
+
+
+
+
+
   // MVP - custom form component
   let find_and_populate_top_headlines = function() {
 
@@ -24,40 +74,8 @@ $(document).ready(function(){
         $("#loader").hide();
       },
       
-      success: function(news){
-        let output = "";
-        let latestNews = news.articles;
-        
-        for(var i in latestNews){
-          output +=`
-            <div class="col l6 m6 s12">
-            <h4>${latestNews[i].title}</h4>
-            <img src="${latestNews[i].urlToImage}" class="responsive-img">
-            <p>${latestNews[i].description}</p>
-            <p>${latestNews[i].content}</p>
-            <p>Published on: ${latestNews[i].publishedAt}</p>
-            <a href="${latestNews[i].url}" class="btn">Read more</a>
-            </div>
-          `;
 
-        }
-        
-        if(output !== ""){
-          $("#newsResults").html(output);
-            M.toast({
-            html: "There you go, nice reading",
-            classes: 'green'
-          });
-          
-        }else{
-          let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;
-            $("#newsResults").html(noNews);
-          M.toast({
-            html: "This news isn't available",
-            classes: 'red'
-          });
-        }  
-      },
+      success: showNews,
 
       // if user encounters an error during keyword search
       error: function(){
@@ -75,36 +93,6 @@ $(document).ready(function(){
     });
   }
 
-  //passed in news result from the server and renders output
-  let renderNews = function(news) {
-
-    let output = "";
-    let latestNews = news.articles;
-
-    
-    for(var i in latestNews){
-      output +=`
-        <div class="col l6 m6 s12">
-            <h4>${latestNews[i].title}</h4>
-            <img src="${latestNews[i].urlToImage}" class="responsive-img">
-            <p>${latestNews[i].description}</p>
-            <p>${latestNews[i].content}</p>
-            <p>Published on: ${latestNews[i].publishedAt}</p>
-            <a href="${latestNews[i].url}" class="btn">Read more</a>
-
-          <form class="save-article-form">
-            <input type="hidden" name="title" value="${latestNews[i].title}">
-            <input type="hidden" name="urlToImage" value="${latestNews[i].urlToImage}">
-            <input type="hidden" name="description" value="${latestNews[i].description}">
-            <input type="hidden" name="content" value="${latestNews[i].content}">
-            <input type="hidden" name="publishedAt" value="${latestNews[i].publishedAt}">
-            <input type="hidden" name="url" value="${latestNews[i].url}">
-            <button>Save Article</button>
-          </form>
-        </div>
-        
-      `;
-    }
 
       // spits out html output for our div id #newsResults
       if(output !== ""){
@@ -118,11 +106,11 @@ $(document).ready(function(){
 
           const formInputs = {
             'title': evt.target[0].value,
-            'urlToImage': evt.target[1].value,
+            'image': evt.target[1].value,
             'description': evt.target[2].value,
             'content': evt.target[3].value,
-            'publishedAt': evt.target[4].value,
-            'url': evt.target[5].value
+            'pub_date': evt.target[4].value,
+            'news_url': evt.target[5].value
             
           };
         
@@ -148,6 +136,7 @@ $(document).ready(function(){
       //let query = url + query -> news output
       let query = $("#searchquery").val();
       let url = ('/api/newsapi/everything?keyword=' + query)
+      console.log(url)
 
       //if statement to determine loader response, after 'search' click
       if(query !== ""){
@@ -170,8 +159,7 @@ $(document).ready(function(){
           },
 
           //if ajax call is successful, return json object from the news server
-          success: renderNews,
-
+          success: showNews,
 
           // if user encounters an error during keyword search (i.e. 404)
           error: function(){

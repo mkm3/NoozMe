@@ -65,25 +65,24 @@ class Saved(db.Model):
     def __repr__(self):
         return f'<Saved id={self.id} user_id={self.user_id} article_id={self.article_id} notes={self.notes} rating={self.rating}>'
 
-#TODO change to 'Subscription' class
-#TODO change to tablename to 'subscriptions'
-class Follower(db.Model):
-    """A friendship connection."""
 
-    __tablename__ = 'followers'
+class Subscription(db.Model):
+    """A subscription connection."""
+
+    __tablename__ = 'subscriptions'
 
     id = db.Column(db.Integer,
                         autoincrement=True,
                         primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    follower_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    subscribe_to = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     created = db.Column(db.DateTime)
     
     user = db.relationship('User', primaryjoin = user_id == User.user_id)
-    follower = db.relationship('User', primaryjoin = follower_id == User.user_id)
+    subscribe_to = db.relationship('User', primaryjoin = user_id == User.user_id)
 
     def __repr__(self):
-        return f'<Follower id={self.id} user_id={self.user_id} follower_id={self.follower_id} created={self.created} confirmed={self.confirmed}>'
+        return f'<Subscription id={self.id} user_id={self.user_id} subscribe_to={self.subscribe_to} created={self.created} confirmed={self.confirmed}>'
     
 
 

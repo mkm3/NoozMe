@@ -130,7 +130,7 @@ def logged_in():
 
 
 # TRYING TO SHOW SAVED NEWS / PROFILE SETTINGS
-# @app.route('/user/<user_id>')
+# @app.route('/user/user_id')
 # def show_profile(user_id):
 #     """Shows user profile"""
 #     user = crud.get_user_by_id(user_id)

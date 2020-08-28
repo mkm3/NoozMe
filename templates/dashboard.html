@@ -53,7 +53,7 @@
     <!-- MVP Search Engine -->
     <div class="container">
 
-      <form action="/api/newsapi" method='get'>
+      <form method='get'>
           <div class="input-field">
               <p>You've successfully logged in as {{user.fname}} {{user.lname}}.</p>
               <i class="material-icons prefix">Search</i>
@@ -63,12 +63,6 @@
           </div>
 
       </form>
-
-      <div id="loader" style="display:none;">
-        <div class="progress">
-          <div class="indeterminate"></div>
-        </div>
-      </div>
 
 
         <form>
@@ -150,6 +144,13 @@
           </select>
       </form>
       </ul>
+
+      <!--loader to show that search is running-->
+      <div id="loader" style="display:none;">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
 
 
       <!-- display news results here -->
