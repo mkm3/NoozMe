@@ -59,7 +59,7 @@ def is_logged_in():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    """Route for handling the login page logic."""
+    """Route for handling user login."""
     login = None
     if request.method == 'POST':
         user = db.session.query(User).filter(User.username == request.form['username'], 
@@ -75,8 +75,15 @@ def login():
             
     return render_template('login.html', login=login)
 
+@app.route('/logout', methods=['GET'])
+def logout():
+    """Route for handling user logout."""
 
-@app.route("/save-article", methods=["POST"])
+    session.pop('user_id', None)
+    return redirect('/login')
+
+
+@app.route('/save-article', methods=['POST'])
 def save_article():
     """Save article to user's profile/saved_news table."""
 
@@ -123,18 +130,22 @@ def create_user():
 
 @app.route('/dashboard', methods=['GET'])
 def logged_in():
-    """Redirect users to dashboard after login"""
+    """Redirect users to dashboard after login or if not logged in."""
+    if not is_logged_in():
+        return redirect('/login')
+    
     user = get_logged_in_user()
     print(f"Successfully logged in as {user.fname} {user.lname}")
     return render_template('dashboard.html', user=user)
 
 
-# TRYING TO SHOW SAVED NEWS / PROFILE SETTINGS
-# @app.route('/user/user_id')
-# def show_profile(user_id):
-#     """Shows user profile"""
-#     user = crud.get_user_by_id(user_id)
-#     return render_template('/profile_settings.html', user=user)
+@app.route('/user/<user_id>')
+def return_saved_news(user_id):
+    """Shows saved news by user_id"""
+    user = crud.get_user_by_id(user_id)
+    saved_articles = crud.get_saved_news(user)
+    return render_template('/profile.html', user=user,
+                                            saved_articles=saved_articles)
 
 
 if __name__ == '__main__':

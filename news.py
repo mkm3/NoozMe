@@ -56,7 +56,3 @@ def get_everything(keyword):
     return articles
 
 
-def get_sources():
-    pass
-
-

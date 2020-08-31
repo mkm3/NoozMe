@@ -59,7 +59,7 @@ def save_article(title,image,description,content,pub_date,news_url,user):
 
 
 def get_saved_news(user):
-    """Grab saved news to render."""
+    """Grab saved news by user."""
     
     saved_news_feed = []
     

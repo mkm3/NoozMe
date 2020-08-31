@@ -9,11 +9,11 @@ $(document).ready(function(){
       output +=`
         <div class="col l6 m6 s12">
             <h4>${news[i].title}</h4>
-            <img src="${news[i].urlToImage}" class="responsive-img">
+            <img src="${news[i].image}" class="responsive-img">
             <p>${news[i].description}</p>
             <p>${news[i].content}</p>
-            <p>Published on: ${news[i].publishedAt}</p>
-            <a href="${news[i].url}" class="btn">Read more</a>
+            <p>Published on: ${news[i].pub_date}</p>
+            <a href="${news[i].news_url}" class="btn">Read more</a>
 
           <form class="save-article-form">
             <input type="hidden" name="title" value="${news[i].title}">
@@ -31,24 +31,30 @@ $(document).ready(function(){
     
     if(output !== ""){
       $("#newsResults").html(output);
-        M.toast({
-        html: "There you go, nice reading",
-        classes: 'green'
+      
+      $('.save-article-form').on('submit', (evt) => {
+        evt.preventDefault();
+        const formInputs = {
+          'title': evt.target[0].value,
+          'image': evt.target[1].value,
+          'description': evt.target[2].value,
+          'content': evt.target[3].value,
+          'pub_date': evt.target[4].value,
+          'news_url': evt.target[5].value
+        };
+      
+        console.log(formInputs)
+
+        $.post('/save-article', formInputs, (res) => {
+          alert(res);
+        });
       });
       
-    }else{
+    } else {
       let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;
         $("#newsResults").html(noNews);
-      M.toast({
-        html: "This news isn't available",
-        classes: 'red'
-      });
     }  
   }
-
-
-
-
 
 
   // MVP - custom form component
@@ -57,8 +63,6 @@ $(document).ready(function(){
     let country = $("#country_selector").val();
     let category = $("#category_selector").val();
     let url = `/api/newsapi/top?country=${country}&category=${category}`;
-
-    
       
     $.ajax({
         
@@ -79,19 +83,19 @@ $(document).ready(function(){
 
       // if user encounters an error during keyword search
       error: function(){
-          let internetFailure = `
-          <div style="font-size:34px; text-align:center; margin-top:40px;">Please check your internet connection and try again.
-          <img src="img/internet.png" class="responsive-img">
-          </div>`;
-          
-        $("#newsResults").html(internetFailure);
-          M.toast({
-            html: "We encountered an error, please try again",
-            classes: 'red'
-          });
+        let internetFailure = `
+        <div style="font-size:34px; text-align:center; margin-top:40px;">Please check your internet connection and try again.
+        <img src="img/internet.png" class="responsive-img">
+        </div>`;
+        
+      $("#newsResults").html(internetFailure);
+        M.toast({
+          html: "We encountered an error, please try again",
+          classes: 'red'
+        });
       }
     });
-  }
+
 
 
       // spits out html output for our div id #newsResults
@@ -100,35 +104,16 @@ $(document).ready(function(){
 
 
         //grabs form inputs and submits them to the saved_news tables
-        $('.save-article-form').on('submit', (evt) => {
-          evt.preventDefault();
-
-
-          const formInputs = {
-            'title': evt.target[0].value,
-            'image': evt.target[1].value,
-            'description': evt.target[2].value,
-            'content': evt.target[3].value,
-            'pub_date': evt.target[4].value,
-            'news_url': evt.target[5].value
-            
-          };
         
-        console.log(formInputs)
 
-      $.post('/save-article', formInputs, (res) => {
-        alert(res);
-      });
-
-    });
-  }
+    }
     //after search, response if no news is available
     else{
       let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;
         $("#newsResults").html(noNews);
     }
-  }
-
+  };
+  
   // MVP - search engine component
   $("#searchbtn").on("click",function(e){
       e.preventDefault();
@@ -192,5 +177,5 @@ $(document).ready(function(){
     //binding the functions for country and category selectors
     $("#country_selector").change(find_and_populate_top_headlines)
     $("#category_selector").change(find_and_populate_top_headlines)
-    
+
 });
