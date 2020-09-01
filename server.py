@@ -51,10 +51,8 @@ def is_logged_in():
     """Checks if a user is logged in."""
     if 'user_id' in session:
         return True
-
     else:
         return False
-        
     
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -75,10 +73,10 @@ def login():
             
     return render_template('login.html', login=login)
 
+
 @app.route('/logout', methods=['GET'])
 def logout():
     """Route for handling user logout."""
-
     session.pop('user_id', None)
     return redirect('/login')
 
@@ -86,7 +84,6 @@ def logout():
 @app.route('/save-article', methods=['POST'])
 def save_article():
     """Save article to user's profile/saved_news table."""
-
     title = request.form.get("title")
     urlToImage = request.form.get("urlToImage")
     description = request.form.get("description")
@@ -137,6 +134,13 @@ def logged_in():
     user = get_logged_in_user()
     print(f"Successfully logged in as {user.fname} {user.lname}")
     return render_template('dashboard.html', user=user)
+
+
+@app.route('/api/all-users', methods=['GET'])
+def get_all_users():
+    """Pull all existing users for typeahead search"""
+    all_users = crud.get_all_users()
+    return jsonify(all_users)
 
 
 @app.route('/user/<user_id>')

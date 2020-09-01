@@ -74,7 +74,23 @@ def get_saved_news(user):
         }
         saved_news_feed.append(article_item)
     print(saved_news_feed)
-    return saved_news_feed               
+    return saved_news_feed     
+
+
+def get_all_users():
+    """Pull all existing users for typeahead search"""
+    all_users = User.query.all()
+    
+    list_of_all_users = []
+    for user in all_users:
+        list_of_all_users.append({
+            'username' : user.username,
+            'fname' : user.fname,
+            'lname' : user.lname,
+            })
+        
+    return list_of_all_users
+        
                         
 def follow_user():
     """Follow another user."""
