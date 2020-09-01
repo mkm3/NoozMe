@@ -4,6 +4,8 @@ from flask import (Flask, render_template, request, flash, session, jsonify,
 
 import os
 
+import json
+
 from model import db, connect_to_db, User
 import crud
 import news
@@ -85,10 +87,10 @@ def logout():
 def save_article():
     """Save article to user's profile/saved_news table."""
     title = request.form.get("title")
-    urlToImage = request.form.get("urlToImage")
+    image = request.form.get("image")
     description = request.form.get("description")
     content = request.form.get("content")
-    publishedAt = request.form.get("publishedAt")
+    pub_date = request.form.get("pub_date")
     url = request.form.get("url")
     
 #user_id
@@ -96,10 +98,10 @@ def save_article():
     
     user = get_logged_in_user()
     crud.save_article(title=title,
-                      image=urlToImage,
+                      image=image,
                       description=description,
                       content=content,
-                      pub_date=publishedAt,
+                      pub_date=pub_date,
                       news_url=url,
                       user=user)
 
@@ -143,13 +145,13 @@ def get_all_users():
     return jsonify(all_users)
 
 
-@app.route('/user/<user_id>')
+@app.route('/user/<int:user_id>')
 def return_saved_news(user_id):
     """Shows saved news by user_id"""
     user = crud.get_user_by_id(user_id)
     saved_articles = crud.get_saved_news(user)
     return render_template('/profile.html', user=user,
-                                            saved_articles=saved_articles)
+                                            saved_articles=json.dumps(saved_articles))
 
 
 if __name__ == '__main__':

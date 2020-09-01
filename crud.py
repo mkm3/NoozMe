@@ -2,7 +2,7 @@
 
 import os
 from model import db, User, Article, Saved, Subscription, Preference, Topic, News_Topic, User_Interest, connect_to_db
-
+from datetime import datetime
 
 def create_user(fname, lname, email, username, password, zipcode):
     """Create and return a new user."""
@@ -35,7 +35,7 @@ def save_article(title,image,description,content,pub_date,news_url,user):
                     image=image,
                     description=description,
                     content = content,
-                    pub_date=pub_date,
+                    pub_date=datetime.strptime(pub_date, "%Y-%m-%dT%H:%M:%SZ"),
                     news_url=news_url
                     )
     
@@ -65,12 +65,14 @@ def get_saved_news(user):
     
     for entry in user.saved_news:
         article = entry.article
+        print(article.article_id)
         article_item = {
             "title" : article.title,
             "image" : article.image,
             "description" : article.description,
             "content" : article.content,
-            "pub_date" : article.news_url
+            "pub_date" : article.pub_date.strftime("%m/%d/%Y"),
+            "news_url" : article.news_url
         }
         saved_news_feed.append(article_item)
     print(saved_news_feed)

@@ -1,5 +1,7 @@
 //function to show saved news
-
+$(document).ready(function(){
+    showNews(saved_articles);
+});
 
 //function to show subscriptions list (server.py too?)
 

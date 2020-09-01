@@ -36,6 +36,7 @@ def get_top(country="", category=""):
     api_articles = res.json()['articles']
     
     articles = convert_json(api_articles)
+    return articles
 
 
 #TODO limit results
