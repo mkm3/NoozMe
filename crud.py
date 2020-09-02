@@ -86,39 +86,41 @@ def get_all_users():
     list_of_all_users = []
     for user in all_users:
         list_of_all_users.append({
+            'user_id' : user.user_id,
             'username' : user.username,
             'fname' : user.fname,
             'lname' : user.lname,
+            'total_articles' : len(user.saved_news)
             })
         
     return list_of_all_users
         
-                        
-def follow_user():
+
+#TODO 2.0                      
+def subscribe():
     """Follow another user."""
     pass
 
 
-def unfollow_user():
+#TODO 2.0
+def unsubscribe():
     """Unfollow another user."""
     pass
 
 
-def update_zipcode():
-    """Update location settings from homepage or profile settings."""
-    pass
-
-
+#TODO NTH
 def rate_article():
     """Update article rating."""
     pass
 
 
+#TODO NTH
 def add_note():
     """Add a note to an article."""
     pass
 
 
-def logout():
-    """Logout user."""
+#TODO NTH
+def add_profile_photo():
+    """Upload photo to user profile"""
     pass

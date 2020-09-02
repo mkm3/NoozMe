@@ -146,8 +146,8 @@ def get_all_users():
 
 
 @app.route('/user/<int:user_id>')
-def return_saved_news(user_id):
-    """Shows saved news by user_id"""
+def return_profile(user_id):
+    """Redirect to user profile."""
     user = crud.get_user_by_id(user_id)
     saved_articles = crud.get_saved_news(user)
     return render_template('/profile.html', user=user,
