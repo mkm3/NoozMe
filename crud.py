@@ -72,7 +72,8 @@ def get_saved_news(user):
             "description" : article.description,
             "content" : article.content,
             "pub_date" : article.pub_date.strftime("%m/%d/%Y"),
-            "news_url" : article.news_url
+            "news_url" : article.news_url,
+            "saved_news_id" : entry.id
         }
         saved_news_feed.append(article_item)
     print(saved_news_feed)
@@ -95,6 +96,15 @@ def get_all_users():
         
     return list_of_all_users
         
+def remove_saved_article(user_id, saved_news_id,):
+    """Remove saved article under user profile"""
+    article_to_remove = Saved.query.filter(Saved.user_id == user_id and Saved.id == saved_news_id).first()
+
+    if article_to_remove:
+        db.session.delete(article_to_remove)
+        db.session.commit()
+        return True
+    return False
 
 #TODO 2.0                      
 def subscribe():

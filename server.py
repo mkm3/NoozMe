@@ -108,6 +108,17 @@ def save_article():
     return "Article has been saved!"
 
 
+@app.route('/remove-article', methods=['POST'])
+def remove_article():
+    """Removed article from database"""
+    saved_news_id = request.form.get("saved_new_id")
+    user_id = get_logged_in_user().user_id
+    
+    if crud.remove_saved_article(saved_news_id=saved_news_id,
+                              user_id=user_id):
+        return 'Saved article has been removed!'
+    return 'Sorry, error occurred.'
+
 @app.route('/registration', methods=['GET', 'POST'])
 def create_user():
     """Get info from registration."""
