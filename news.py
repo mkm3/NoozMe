@@ -15,7 +15,8 @@ def convert_json(api_articles):
             'description' : article['description'],
             'content' : article['content'],
             'pub_date' : article['publishedAt'],
-            'news_url' : article['url']
+            'news_url' : article['url'],
+            'origin' : 'newsapi'
         }
         articles.append(my_article)
         

@@ -22,8 +22,8 @@ app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
 def homepage():
-    """View homepage."""
-    return render_template('homepage.html')
+    """Load web app."""
+    return redirect('/login')
 
 
 @app.route('/api/newsapi/everything', methods=['GET'])
@@ -60,6 +60,9 @@ def is_logged_in():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """Route for handling user login."""
+    if is_logged_in():
+        return redirect('/dashboard')
+    
     login = None
     if request.method == 'POST':
         user = db.session.query(User).filter(User.username == request.form['username'], 
@@ -92,9 +95,7 @@ def save_article():
     content = request.form.get("content")
     pub_date = request.form.get("pub_date")
     url = request.form.get("url")
-    
-#user_id
-#article_id
+
     
     user = get_logged_in_user()
     crud.save_article(title=title,
@@ -106,6 +107,18 @@ def save_article():
                       user=user)
 
     return "Article has been saved!"
+
+
+@app.route('/save-subscribed-article', methods=['POST'])
+def save_another_users_saved_article():
+    """Save article from another user's saved news."""    
+    user = get_logged_in_user()
+    user_id = user.user_id
+    
+    article_id = request.form.get("article_id")
+    crud.save_subscribed_article(user_id, article_id)
+
+    return "You saved their article!"
 
 
 @app.route('/remove-article', methods=['POST'])
@@ -158,11 +171,24 @@ def get_all_users():
 
 @app.route('/user/<int:user_id>')
 def return_profile(user_id):
-    """Redirect to user profile."""
+    """Redirect to user profile (login user and other users)."""
+    if not is_logged_in():
+        return redirect('/login')
+    
+    logged_in_user = get_logged_in_user()
     user = crud.get_user_by_id(user_id)
-    saved_articles = crud.get_saved_news(user)
+                            
+                            #expression to evaluate T or F
+    is_not_logged_in_user = user.user_id != logged_in_user.user_id
+    
+    if logged_in_user == user:
+        saved_articles = crud.get_saved_news(user)
+    else:       
+        saved_articles = crud.get_saved_news(user, "subscription")
+        
     return render_template('/profile.html', user=user,
-                                            saved_articles=json.dumps(saved_articles))
+                                            saved_articles=json.dumps(saved_articles),
+                                            is_not_logged_in_user=is_not_logged_in_user)
 
 
 if __name__ == '__main__':

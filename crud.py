@@ -56,9 +56,21 @@ def save_article(title,image,description,content,pub_date,news_url,user):
 
     #testing
     print(saved_article)
+    
 
+def save_subscribed_article(user_id, article_id):
+    """Logged in user can save article that is under another user's saved_news feed."""
+    user = User.query.get(user_id)
+    article = Article.query.get(article_id)
+    
+    saved_article = Saved(user=user, article=article)
+    
+    db.session.add(saved_article)
+    db.session.commit()
 
-def get_saved_news(user):
+    return True
+
+def get_saved_news(user, origin="saved"):
     """Grab saved news by user."""
     
     saved_news_feed = []
@@ -73,7 +85,9 @@ def get_saved_news(user):
             "content" : article.content,
             "pub_date" : article.pub_date.strftime("%m/%d/%Y"),
             "news_url" : article.news_url,
-            "saved_news_id" : entry.id
+            "saved_news_id" : entry.id,
+            "origin" : origin,
+            "article_id" : article.article_id
         }
         saved_news_feed.append(article_item)
     print(saved_news_feed)
