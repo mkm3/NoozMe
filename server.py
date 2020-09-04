@@ -1,4 +1,5 @@
 
+import profile
 from flask import (Flask, render_template, request, flash, session, jsonify,
                    redirect, url_for)
 
@@ -152,7 +153,7 @@ def create_user():
 
 
 @app.route('/dashboard', methods=['GET'])
-def logged_in():
+def get_dashboard():
     """Redirect users to dashboard after login or if not logged in."""
     if not is_logged_in():
         return redirect('/login')
@@ -169,14 +170,14 @@ def get_all_users():
     return jsonify(all_users)
 
 
-@app.route('/user/<int:user_id>')
-def return_profile(user_id):
+@app.route('/user/<int:profile_id>')
+def return_profile(profile_id):
     """Redirect to user profile (login user and other users)."""
     if not is_logged_in():
         return redirect('/login')
     
     logged_in_user = get_logged_in_user()
-    user = crud.get_user_by_id(user_id)
+    user = crud.get_user_by_id(profile_id)
                             
                             #expression to evaluate T or F
     is_not_logged_in_user = user.user_id != logged_in_user.user_id
@@ -185,12 +186,38 @@ def return_profile(user_id):
         saved_articles = crud.get_saved_news(user)
     else:       
         saved_articles = crud.get_saved_news(user, "subscription")
+    
+    is_subscribed = crud.is_subscribed(logged_in_user.user_id, profile_id)
         
     return render_template('/profile.html', user=user,
                                             saved_articles=json.dumps(saved_articles),
-                                            is_not_logged_in_user=is_not_logged_in_user)
+                                            is_not_logged_in_user=is_not_logged_in_user,
+                                            is_subscribed=is_subscribed)
 
+
+@app.route('/api/toggle-subscribe', methods=['POST'])
+def toggle_subscribe():
+    """Subscribe and unsubscribe to other users."""
+
+    #logged in user
+    if not is_logged_in():
+        return "Error occurred because user is not logged in."
+
+    user = get_logged_in_user()
+
+    #other user's profile user id
+    profile_user_id = request.form['profile_user_id']
+    user_id = user.user_id
+
+    if crud.is_subscribed(user_id, profile_user_id):
+        crud.unsubscribe(user_id, profile_user_id)
+        return "You've unsubscribed!"
+    
+    crud.subscribe(user.user_id, profile_user_id)
+
+    return "You made a new subscription!"
 
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)
+

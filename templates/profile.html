@@ -3,7 +3,14 @@
 </br>
 </br>
       {% if is_not_logged_in_user %}
-        <button>Subscribe</button>
+      <form id="subscribe">
+        <input type="hidden" name="profile_user_id" value="{{user.user_id}}">
+        {% if is_subscribed %}
+        <button id="subscribe_btn">UNSUBSCRIBE</button>
+        {% else %}
+        <button id="subscribe_btn">SUBSCRIBE</button>
+        {% endif %}
+      </form>
       {% endif %}
 
 
@@ -20,3 +27,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="/static/show_news.js"></script>
 <script src="/static/profile.js"></script>
+<script src="/static/subscription.js"></script>

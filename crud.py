@@ -121,15 +121,40 @@ def remove_saved_article(user_id, saved_news_id,):
     return False
 
 #TODO 2.0                      
-def subscribe():
+def subscribe(user_id, profile_user_id):
     """Follow another user."""
-    pass
+    user = get_user_by_id(user_id)
+    #profile of other user
+    subscribe_to = get_user_by_id(profile_user_id)
+
+    subscription = Subscription(user=user, 
+                                subscribe_to=subscribe_to)
+
+    db.session.add(subscription)
+    db.session.commit()
 
 
 #TODO 2.0
-def unsubscribe():
+def unsubscribe(user_id, profile_user_id):
     """Unfollow another user."""
-    pass
+    subscription = Subscription.query.filter(
+        Subscription.user_id == user_id and 
+        Subscription.subscribe_to == profile_user_id
+        ).first()
+
+    db.session.delete(subscription)
+    db.session.commit()
+
+
+def is_subscribed(user_id, profile_user_id):
+    """Check if user is subscribed to another user."""
+
+    subscription = Subscription.query.filter(
+        Subscription.user_id == user_id and 
+        Subscription.subscribe_to == profile_user_id
+        ).first()
+    print(subscription)
+    return subscription is not None
 
 
 #TODO NTH
