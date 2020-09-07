@@ -1,21 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{{user.fname}}'s NoozMe Profile!
-</br>
-</br>
-</br>
-      {% if is_not_logged_in_user %}
-      <form id="subscribe">
-        <input type="hidden" name="profile_user_id" value="{{user.user_id}}">
-        {% if is_subscribed %}
-        <button id="subscribe_btn">UNSUBSCRIBE</button>
-        {% else %}
-        <button id="subscribe_btn">SUBSCRIBE</button>
-        {% endif %}
-      </form>
-      {% endif %}
+<title>NoozMe - Profile</title>
 
+<script src="/static/profile.js"></script>
+<script src="/static/user_search.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Typeahead Search Engine to find other users -->
+  <form>
+    <div class="typeahead__container">
+        <div class="typeahead__field">
+            <div class="typeahead__query">
+                <input id="search-bar" type="text" placeholder="Type a username.." autocomplete="off">
+            </div>
+            <div class="typeahead__button">
+                <input type="submit" name="search">
+                    <i class="typeahead__search-icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+  </form>
+
+    {{user.fname}}'s NoozMe Profile!
+    <br />
+    <br />
+
+    <!-- Subscribe/Unsubscribe Button -->
+    {% if is_not_logged_in_user %}
+    <form id="subscribe">
+      <input type="hidden" name="profile_user_id" value="{{user.user_id}}">
+      {% if is_subscribed %}
+      <button id="subscribe_btn">UNSUBSCRIBE</button>
+      {% else %}
+      <button id="subscribe_btn">SUBSCRIBE</button>
+      {% endif %}
+    </form>
+    {% endif %}
+    <br />
 
     <!-- Display user's saved news -->
     <div class="row">
@@ -23,13 +49,6 @@
     </div>
 
 <script> const saved_articles = {{saved_articles|safe}}</script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="/static/show_news.js"></script>
-<script src="/static/profile.js"></script>
-<script src="/static/subscription.js"></script>
+</body>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+    console.log("Loading User Search Typeahead.");
     $.typeahead({
         input: '#search-bar',
         template: function(query, item) {
@@ -16,9 +16,7 @@ $(document).ready(function(){
         generateOnLoad: true,
         callback: {
             onInit: function (node) {
-                console.log('Typeahead Initiated on ' + node.selector);
-
-
+                console.log('Typeahead Initiated');
             }
         }
     });
