@@ -1,3 +1,6 @@
+  {% extends 'base.html'%}
+  {% block content%}
+  
   <title>NoozMe - Home</title>
 
   <!-- Load Bootstrap 4 -->
@@ -23,37 +26,9 @@
 
 </head>
 
+
+
 <body>
-
-<!-- Navbar collapsed -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">NoozMe</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">  
-
-
-
-
-  <!-- Navbar showing nav-links -->
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" type="home" href="dashboard">Home</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" type="profile" href="user/{{user.user_id}}">Profile</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" type="logout" href="logout">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-    
 
       <!-- Typeahead Search Engine to find other users -->
 <form>
@@ -72,7 +47,6 @@
 </form>
 
 
-
     <!-- MVP Search Engine -->
     <div class="container">
 
@@ -87,93 +61,19 @@
 
       </form>
 
-
-        <form>
-          *Might convert Category dropdown to tabs.
+      <form>
           <br />
-          *You can choose either Category or Country or Both.
+          Search by Category
           <br />
-          Category
-          <br />
-          <select name="Categories" id="category_selector"> Category
-          <br />
-            <option value=""> Select </option>
-            <option value="business"> Business </option>
-            <option value="entertainment"> Entertainment </option>
-            <option value="general"> General </option>
-            <option value="health"> Health </option>
-            <option value="science"> Science </option>
-            <option value="sports"> Sports </option>
-            <option value="technology"> Technology </option>
-          </select>      
-        </form>
-
-        <form>
-          Source by Country
-          <br />
-          <select id="country_selector">
-          <br />
-            <option value=""> Select </option>
-            <option value="ar"> Argentina </option>
-            <option value="au"> Australia </option>
-            <option value="at"> Austria </option>
-            <option value="be"> Belgium </option>
-            <option value="br"> Brazil </option>
-            <option value="bg"> Bulgaria </option>
-            <option value="ca"> Canada </option>
-            <option value="cn"> China </option>
-            <option value="co"> Columbia </option>
-            <option value="cu"> Cuba </option>
-            <option value="cz"> Czech Republic </option>
-            <option value="eg"> Eqypt </option>
-            <option value="fr"> France </option>
-            <option value="de"> Germany </option>
-            <option value="gr"> Greece </option>
-            <option value="hk"> Hong Kong </option>
-            <option value="hu"> Hungary </option>
-
-            <option value="in"> India </option>
-            <option value="id"> Indonesia </option>
-            <option value="ie"> Ireland </option>
-            <option value="il"> Israel </option>
-            <option value="it"> Italy </option>
-            <option value="jp"> Japan </option>
-            <option value="lv"> Latvia </option>
-            <option value="lt"> Lithuania </option>
-            <option value="my"> Malaysia </option>
-            <option value="mx"> Mexico </option>
-            <option value="ma"> Morocco </option>
-            <option value="nl"> Netherlands </option>
-            <option value="nz"> New Zealand </option>
-            <option value="ng"> Nigeria </option>
-            <option value="no"> Norway </option>
-            <option value="ph"> Philippines </option>
-            <option value="pl"> Poland </option>
-            <option value="pt"> Portugal </option>
-
-            <option value="ro"> Romania </option>
-            <option value="ru"> Russia </option>
-            <option value="sa"> Saudi Arabia </option>
-            <option value="rs"> Serbia </option>
-            <option value="sg"> Singapore </option>
-            <option value="sk"> Slovakia </option>
-            <option value="si"> Slovenia </option>
-            <option value="za"> South Africa </option>
-            <option value="kr"> South Korea </option>
-            <option value="se"> Sweden </option>
-            <option value="ch"> Switzerland </option>
-            <option value="tw"> Taiwan </option>
-            <option value="th"> Thailand </option>
-            <option value="tr"> Turkey </option>
-            <option value="ae"> UAE </option>
-            <option value="ua"> Ukraine </option>
-            <option value="gb"> United Kingdom </option>
-            <option value="us"> United States </option>
-            <option value="ve"> Venuzuela </option>
-          </select>
-      </form>
-      </ul>
-
+          <a href=""><i class="fa fa-globe" aria-hidden="true"><option value="general"> General </option></i></a>
+          <a href=""><i class="fa fa-building" aria-hidden="true"><option value="business"> Business </option></i></a>
+          <a href=""><i class="fa fa-film" aria-hidden="true"><option value="entertainment"> Entertainment </option></i></a>
+          <a href=""><i class="fa fa-medkit" aria-hidden="true"><option value="health"> Health </option></i></a>
+          <a href=""><i class="fa fa-flask" aria-hidden="true"><option value="science"> Science </option></i></a>
+          <a href=""><i class="fas fa-futbol"><option value="sports"> Sports </option></i></a>
+          <a href=""><i class="fa fa-laptop" aria-hidden="true"><option value="technology"> Technology </option></i></a>
+      <form>
+      
       <!--loader to show that search is running-->
       <div id="loader" style="display:none;">
         <div class="progress">
@@ -188,11 +88,7 @@
       </div>
 
 
-<!-- You need this in order to use JS-based components in the 
-further study. Leave this at the bottom and code above it. -->
-
-
-
-
 </body>
 </html>
+
+{% endblock %}
