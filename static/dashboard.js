@@ -2,11 +2,9 @@
 $(document).ready(function(){
 
   // MVP - custom form component
-  let find_and_populate_top_headlines = function() {
+  let find_and_populate_top_headlines = function(category) {
 
-    let country = $("#country_selector").val();
-    let category = $("#category_selector").val();
-    let url = `/api/newsapi/top?country=${country}&category=${category}`;
+    let url = `/api/newsapi/top?category=${category}`;
       
     $.ajax({
         
@@ -38,7 +36,7 @@ $(document).ready(function(){
   };
   
   // MVP - search engine component
-  $("#searchbtn").on("click",function(e){
+  $("#searchbtn").on("click",function(e) {
       e.preventDefault();
       
       //let query = url + query -> news output
@@ -89,8 +87,13 @@ $(document).ready(function(){
       
     });
 
-    //binding the functions for country and category selectors
-    $("#country_selector").change(find_and_populate_top_headlines)
-    $("#category_selector").change(find_and_populate_top_headlines)
+
+  $(".category-search").on("click", function(e) {
+    e.preventDefault();
+    //'this' refers to the element that was clicked
+    //we use preventDefault to avoid the link default behavior <a></a>
+    find_and_populate_top_headlines($(this).data("value"));
+  })
+
 
 });

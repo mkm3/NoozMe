@@ -39,7 +39,9 @@ def get_everything():
 @app.route('/api/newsapi/top', methods=['GET'])
 def get_top():
     """Get top headlines by category and country."""
-    country = request.args['country']
+
+    user = get_logged_in_user()
+    country = user.preferred_country.country_value
     category = request.args['category']
     res = news.get_top(country=country, category=category)
     return jsonify(res)
