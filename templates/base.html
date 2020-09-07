@@ -3,23 +3,71 @@
 <html>
 
 
-    <head>
+<head>  
 
-    <title>{% block title %}TITLE HERE{% endblock %}</title>
+    <title>NoozMe - Home</title>
     
     <!-- Load Bootstrap 4 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    
     <!-- Load Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
-
+    
     <!-- Load our stylesheet -->
     <link rel="stylesheet"href="/static/css/styles.css">
-
+    
+    <!-- Optional CSS for Typeahead search -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.css">
+    
+    <!-- Required JavaScript for Typeahead search -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/static/show_news.js"></script>
+    <script src="/static/dashboard.js"></script>
+    <script src="/static/user_search.js"></script>
+    
     </head>
 
 
     <body>
+
+        <!-- Navbar collapsed -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">NoozMe</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">  
+
+
+        <!-- Navbar showing nav-links -->
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                <a class="nav-link" type="home" href="/dashboard">Home</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" type="profile" href="/user/{{user.user_id}}">Profile</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" type="settings" href="/settings">Settings</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" type="logout" href="/logout">Logout</a>
+                </li>
+            </ul>
+            </div>
+        </nav>
+
+
+
+
+
 
         <div class="container">
             {% block content %}CONTENT HERE{% endblock %}

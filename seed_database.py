@@ -15,12 +15,53 @@ os.system('createdb noozme_db')
 connect_to_db(server.app)
 db.create_all()
 
+
+
+#Test categories
+category1 = Category(category_value="business", category_string="Business")
+category2 = Category(category_value="entertainment", category_string="Entertainment")
+category3 = Category(category_value="general", category_string="General")
+category4 = Category(category_value="health", category_string="Health")
+category5 = Category(category_value="science", category_string="Science")
+category6 = Category(category_value="sports", category_string="Sports")
+category7 = Category(category_value="technology", category_string="Technology")
+
+categories = [category1, category2, category3, category4, category5, category6]
+db.session.add_all(categories)
+
+
+#Test countries
+country_codes = ["ar", "au", "at", "be", "br", "bg", "ca", "cn", "co",
+                "cu", "cz", "eg", "fr", "de", "gr", "hk", "hu", "in",
+                "id", "ie", "il", "it", "jp", "lv", "lt", "my", "mx",
+                "ma", "nl", "nz", "ng", "no", "ph", "pl", "pt", "ro",
+                "ru", "sa", "rs", "sg", "sk", "si", "za", "kr", "se",
+                "ch", "tw", "th", "tr", "ae", "ua", "gb", "us", "ve"]
+
+countries = ["Argentina", "Australia", "Austria", "Belgium", "Brazil", 
+            "Bulgaria", "Canada", "China", "Columbia", "Cuba", "Czech Republic", 
+            "Eqypt", "France", "Germany", "Greece", "Hong Kong", "Hungary", 
+            "India", "Indonesia", "Ireland", "Israel", "Italy", "Japan", "Latvia", 
+            "Lithuania", "Malaysia", "Mexico", "Morocco", "Netherlands", "New Zealand", 
+            "Nigeria", "Norway", "Philippines", "Poland", "Portugal", "Romania", "Russia", 
+            "Saudi Arabia", "Serbia", "Singapore", "Slovakia", "Slovenia", "South Africa", 
+            "South Korea", "Sweden", "Switzerland", "Taiwan", "Thailand", "Turkey", "UAE", "Ukraine", 
+            "United Kingdom", "United States", "Venuzuela"]
+
+country_entries = []
+
+for country_code, country in zip(country_codes, countries):
+    country_entries.append(Country(country_value=country_code, country_string=country))
+
+db.session.add_all(country_entries)
+
+
 #Test users
-user1 = User(fname="Max", lname="Murphy", email="mrm@gmail.com", username="murphdog777", password="password123", zipcode = 94596)
-user2 = User(fname="Michelle", lname="Macaraeg", email="mkm@gmail.com", username="mikkster3", password="password123", zipcode = 94596)
-user3 = User(fname="Robbie", lname="Macaraeg", email="ram@gmail.com", username="robizamac", password="password123", zipcode = 94596)
-user4 = User(fname="Charlie", lname="Bear", email="ruff@gmail.com", username="pumpkinhead", password="password123", zipcode = 94596)
-user5 = User(fname="Hadley", lname="Kitten", email="meow@gmail.com", username="snuggles", password="password123", zipcode = 94596)
+user1 = User(fname="Max", lname="Murphy", email="mrm@gmail.com", username="murphdog777", password="password123", preferred_category_id=1, preferred_country_id=1)
+user2 = User(fname="Michelle", lname="Macaraeg", email="mkm@gmail.com", username="mikkster3", password="password123", preferred_category_id=1, preferred_country_id=1)
+user3 = User(fname="Robbie", lname="Macaraeg", email="ram@gmail.com", username="robizamac", password="password123", preferred_category_id=1, preferred_country_id=1)
+user4 = User(fname="Charlie", lname="Bear", email="ruff@gmail.com", username="pumpkinhead", password="password123", preferred_category_id=1, preferred_country_id=1)
+user5 = User(fname="Hadley", lname="Kitten", email="meow@gmail.com", username="snuggles", password="password123", preferred_category_id=1, preferred_country_id=1)
 
 users = [user1, user2, user3, user4, user5]
 db.session.add_all(users)
@@ -55,52 +96,6 @@ subscription5 = Subscription(user=user5, subscribe_to=user1, created=datetime.no
 #TODO create subscription lists
 #TODO db.session.add_all(subscriptions)
 
-#Test user_preferences
-pref1 = Preference(user=user1, language="us", zipcode=94709)
-pref2 = Preference(user=user2, language="us", zipcode=94596)
-pref3 = Preference(user=user3, language="us", zipcode=94518)
-pref4 = Preference(user=user4, language="us", zipcode=94498)
-pref5 = Preference(user=user5, language="us", zipcode=94111)
-
-user_preferences = [pref1, pref2, pref3, pref4, pref5]
-db.session.add_all(user_preferences)
-
-
-#Test topics
-topic1 = Topic(topic="business")
-topic2 = Topic(topic="entertainment")
-topic3 = Topic(topic="general")
-topic4 = Topic(topic="health")
-topic5 = Topic(topic="science")
-topic6 = Topic(topic="sports")
-topic7 = Topic(topic="technology")
-
-topics = [topic1, topic2, topic3, topic4, topic5, topic6]
-db.session.add_all(topics)
-
-#Test news_topics
-article1 = News_Topic(article=article1, topic=topic7)
-article2 = News_Topic(article=article2, topic=topic6)
-article3 = News_Topic(article=article3, topic=topic5)
-article4 = News_Topic(article=article4, topic=topic4)
-article5 = News_Topic(article=article5, topic=topic3)
-
-articles = [article1, article2, article3, article4, article5]
-db.session.add_all(articles)
-
-#Test user_interests
-user_interest1 = User_Interest(user=user1, topic=topic5)
-user_interest2 = User_Interest(user=user2, topic=topic4)
-user_interest6 = User_Interest(user=user2, topic=topic5)
-user_interest3 = User_Interest(user=user3, topic=topic3)
-user_interest7 = User_Interest(user=user3, topic=topic5)
-user_interest9 = User_Interest(user=user3, topic=topic1)
-user_interest4 = User_Interest(user=user4, topic=topic2)
-user_interest8 = User_Interest(user=user4, topic=topic5)
-user_interest5 = User_Interest(user=user5, topic=topic1)
-
-user_interests = [user_interest1, user_interest2, user_interest3, user_interest4, user_interest5]
-db.session.add_all(user_interests)
 
 #commit all tests to database tables
 db.session.commit()

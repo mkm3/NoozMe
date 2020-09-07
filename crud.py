@@ -1,23 +1,31 @@
 """CRUD Operations."""
 
 import os
-from model import db, User, Article, Saved, Subscription, Preference, Topic, News_Topic, User_Interest, connect_to_db
+import re
+from model import db, User, Article, Saved, Subscription, Category, Country, connect_to_db
+
+from sqlalchemy.exc import IntegrityError
+
 from datetime import datetime
 
-def create_user(fname, lname, email, username, password, zipcode):
+def create_user(fname, lname, email, username, password, category, country):
     """Create and return a new user."""
+    try:
+        user = User(fname=fname,
+                    lname=lname,
+                    email=email,
+                    username=username,
+                    password=password,
+                    preferred_category_id=category,
+                    preferred_country_id=country)
 
-    user = User(fname=fname,
-                lname=lname,
-                email=email,
-                username=username,
-                password=password,
-                zipcode=zipcode)
+        db.session.add(user)
+        db.session.commit()
+        return user
 
-    db.session.add(user)
-    db.session.commit()
-
-    return user
+    except IntegrityError:
+        db.session.rollback()
+        return None
 
 def get_user_by_id(user_id):
     """Return a user by primary key"""
@@ -95,7 +103,7 @@ def get_saved_news(user, origin="saved"):
 
 
 def get_all_users():
-    """Pull all existing users for typeahead search"""
+    """Pull all existing users for typeahead search."""
     all_users = User.query.all()
     
     list_of_all_users = []
@@ -109,9 +117,22 @@ def get_all_users():
             })
         
     return list_of_all_users
-        
+
+
+def get_category_entries():
+    """Pull all category_entries."""
+    category_entries = Category.query.all()
+    return category_entries
+
+
+def get_country_entries():
+    """Pull all country_entries."""
+    country_entries = Country.query.all()
+    return country_entries
+
+
 def remove_saved_article(user_id, saved_news_id,):
-    """Remove saved article under user profile"""
+    """Remove saved article under user profile."""
     article_to_remove = Saved.query.filter(Saved.user_id == user_id and Saved.id == saved_news_id).first()
 
     if article_to_remove:
@@ -156,6 +177,19 @@ def is_subscribed(user_id, profile_user_id):
     print(subscription)
     return subscription is not None
 
+
+#TODO
+def update_user(user_id, email, preferred_category_id, preferred_country_id):
+    """Updates user settings (category and country)."""
+    user = User.query.get(user_id)
+
+    user.email = email
+    user.preferred_category_id = preferred_category_id
+    user.preferred_country_id = preferred_country_id
+
+    db.session.commit()
+    return user
+    
 
 #TODO NTH
 def rate_article():

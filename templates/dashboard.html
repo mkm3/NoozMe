@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>  
+  
   <title>NoozMe - Home</title>
 
   <!-- Load Bootstrap 4 -->
@@ -40,15 +45,19 @@
   <!-- Navbar showing nav-links -->
       <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" type="home" href="dashboard">Home</a>
+          <a class="nav-link" type="home" href="/dashboard">Home</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" type="profile" href="user/{{user.user_id}}">Profile</a>
+          <a class="nav-link" type="profile" href="/user/{{user.user_id}}">Profile</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" type="logout" href="logout">Logout</a>
+          <a class="nav-link" type="settings" href="/settings">Settings</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" type="logout" href="/logout">Logout</a>
         </li>
       </ul>
     </div>
@@ -89,7 +98,7 @@
 
 
         <form>
-          *Might convert Category dropdown to tabs.
+          *Convert to Icon Selection
           <br />
           *You can choose either Category or Country or Both.
           <br />
@@ -196,3 +205,5 @@ further study. Leave this at the bottom and code above it. -->
 
 </body>
 </html>
+
+{% endblock %}

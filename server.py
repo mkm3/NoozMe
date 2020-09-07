@@ -2,6 +2,7 @@
 import profile
 from flask import (Flask, render_template, request, flash, session, jsonify,
                    redirect, url_for)
+from sqlalchemy.exc import IntegrityError
 
 import os
 
@@ -99,13 +100,14 @@ def save_article():
 
     
     user = get_logged_in_user()
-    crud.save_article(title=title,
-                      image=image,
-                      description=description,
-                      content=content,
-                      pub_date=pub_date,
-                      news_url=url,
-                      user=user)
+    crud.save_article(
+        title=title,
+        image=image,
+        description=description,
+        content=content,
+        pub_date=pub_date,
+        news_url=url,
+        user=user)
 
     return "Article has been saved!"
 
@@ -128,8 +130,9 @@ def remove_article():
     saved_news_id = request.form.get("saved_new_id")
     user_id = get_logged_in_user().user_id
     
-    if crud.remove_saved_article(saved_news_id=saved_news_id,
-                              user_id=user_id):
+    if crud.remove_saved_article(
+        saved_news_id=saved_news_id,
+        user_id=user_id):
         return 'Saved article has been removed!'
     return 'Sorry, error occurred.'
 
@@ -137,19 +140,32 @@ def remove_article():
 def create_user():
     """Get info from registration."""
     
-    if request.method == 'POST':
-        crud.create_user(request.form['fname'],
-                         request.form['lname'],
-                         request.form['email'],
-                         request.form['username'],
-                         request.form['password'],
-                         request.form['zipcode'])
-        return redirect('/login')
-        
-    else:
-        flash("Cannot create an account with that email. Try again.")
+    categories = crud.get_category_entries()
+    countries = crud.get_country_entries()
 
-    return render_template('registration.html')
+    if request.method == 'POST':
+        user = crud.create_user(
+            #['string'] = the "name" field within the form
+            request.form['fname'],
+            request.form['lname'],
+            request.form['email'],
+            request.form['username'],
+            request.form['password'],
+            request.form['category_id'],
+            request.form['country_id'])
+        if user:
+            #testing
+            print("User has been created!")
+            return redirect('/login')
+        else:
+            flash("User exists. Please try again.")
+
+
+    return render_template(
+        'registration.html',
+        categories=categories,
+        countries=countries
+        )
 
 
 @app.route('/dashboard', methods=['GET'])
@@ -161,6 +177,32 @@ def get_dashboard():
     user = get_logged_in_user()
     print(f"Successfully logged in as {user.fname} {user.lname}")
     return render_template('dashboard.html', user=user)
+
+#TODO
+@app.route('/settings', methods=['GET','POST'])
+def get_or_update_settings():
+    """Redirects users to Settings from dashboard and pulls category and country preferences saved"""
+    
+    categories = crud.get_category_entries()
+    countries = crud.get_country_entries()
+
+    user = get_logged_in_user()
+    if request.method == 'POST':
+        new_email = request.form['email']
+        new_category_pref = request.form['category_id']
+        new_country_pref = request.form['country_id']
+        user = crud.update_user(
+            user_id=user.user_id, 
+            email=new_email, 
+            preferred_category_id=new_category_pref, 
+            preferred_country_id=new_country_pref)
+    
+    return render_template(
+        'settings.html', 
+        user=user,
+        categories=categories,
+        countries=countries
+        )
 
 
 @app.route('/api/all-users', methods=['GET'])
