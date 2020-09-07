@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<html>
+<head>
+    <script src="/static/dashboard.js"></script>  
+
+</head>
+
+<body>
+
+    <form action="/settings" method='post'>
+        <div class="container">
+            <h1>Settings</h1>
+            <p>Update your settings, then press "Save Updates".</p>
+            <hr>
+
+            <p>
+                <label for="fname"><b>First Name</b></label>
+                <input type="text" value={{user.fname}}  name="fname" id="fname" disabled>
+            </p>
+
+            <p>
+                <label for="lname"><b>Last Name</b></label>
+                <input type="text" value={{user.lname}}  name="lname" id="lname" disabled>
+            </p>
+
+            <p>
+                <label for="username"><b>Username</b></label>
+                <input type="text" value={{user.username}}  name="username" id="username" disabled>
+            </p>
+
+            <p>
+                <label for="email"><b>Email</b></label>
+                <input type="text" value={{user.email}} name="email" id="email" required>
+            </p>
+
+            <p>
+                <label for="category_id"><b>Category of Preference</b></label>
+                <select name="category_id" id="category_selector">
+                    {% for category in categories %}
+                    <option value="{{category.id}}"{% if category.id == user.preferred_category_id %} selected {% endif %}> {{category.category_string}} </option>
+                    {% endfor %}
+                </select> 
+            </p>
+
+            <p>
+                <label for="country_id"><b>Country of Preference</b></label>
+                <select name="country_id" id="country_selector">
+                    {% for country in countries %}
+                    <option value="{{country.id}}" {% if country.id == user.preferred_country_id %} selected {% endif %}> {{country.country_string}} </option>
+                    {% endfor %}
+                </select> 
+            </p>
+
+            <button type="submit" class="btn">Save Updates</button>
+        </div>
+    </form>
+</body>
+</html>
+
+{% endblock %}
