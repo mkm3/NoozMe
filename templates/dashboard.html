@@ -55,7 +55,7 @@
               <h3>Search</h3>
               <input type="text" id="searchquery">
               <input type="submit" id="searchbtn" value="search">
-              <input type="reset" id="searchbtn" value="clear"  style="margin-top:3px;">
+              <input type="reset" id="resetbtn" value="clear"  style="margin-top:3px;">
           </div>
 
       </form>
@@ -98,6 +98,81 @@
         <br />
         <div id="newsResults"></div>
       </div>
+
+
+          <!--Modal: modalConfirmDelete-->
+    <div class="modal fade" id="modalSaveArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+        <!--Header-->
+        <div class="modal-header d-flex justify-content-center">
+        <p class="heading">How would you describe this article?</p>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body">
+
+        <!-- <i class="fas fa-times fa-4x animated rotateIn"></i> -->
+
+        <p>
+            <select name="phrase_id" id="phrase_selector">
+                <option value="adorable"> adorable </option>
+                <option value="bad"> bad </option>
+                <option value="baffling"> baffling </option>
+                <option value="concise"> concise </option>
+                <option value="crazy"> crazy </option>
+                <option value="credible"> credible </option>
+                <option value="critical"> critical </option>
+                <option value="cute"> cute </option>
+                <option value="cynical"> cynical </option>
+                <option value="delightful"> delightful </option>
+                <option value="disgraceful"> disgraceful </option>
+                <option value="despicable"> despicable </option>
+                <option value="excellent"> excellent </option>
+                <option value="exciting"> exciting </option>
+                <option value="fake"> fake </option>
+                <option value="fantastic"> fantastic </option>
+                <option value="fascinating"> fascinating </option>
+                <option value="happy"> happy </option>
+                <option value="helpful"> helpful </option>
+                <option value="horribly_written"> horribly written </option>
+                <option value="horrifying"> horrifying </option>
+                <option value="informative"> informative </option>
+                <option value="insightful"> insightful </option>
+                <option value="inspiring"> inspiring </option>
+                <option value="interesting"> interesting </option>
+                <option value="motivating"> motivating </option>
+                <option value="mysterious"> mysterious </option>
+                <option value="not_credible"> not credible </option>
+                <option value="poorly_written"> poorly written </option>
+                <option value="quirky"> quirky </option>
+                <option value="ridiculous"> ridiculous </option>
+                <option value="sarcastic"> sarcastic </option>
+                <option value="satirical"> satirical </option>
+                <option value="shocking"> shocking </option>
+                <option value="silly"> silly </option>
+                <option value="stupid"> stupid </option>
+                <option value="surprising"> surprising </option>
+                <option value="suspicious"> suspicious </option>
+                <option value="well_written"> well written </option>
+                <option value="wonderful"> wonderful </option>
+            </select> 
+        </p>
+
+        </div>
+
+        <!--Footer-->
+        <div class="modal-footer flex-center">
+        <a href="" class="btn  btn-outline-danger" id="save-article-btn">Save Article</a>
+        <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">Cancel</a>
+        </div>
+    </div>
+    <!--/.Content-->
+    </div>
+</div>
+<!--Modal: modalConfirmDelete-->
 
 
 </body>

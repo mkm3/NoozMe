@@ -37,15 +37,16 @@ def get_article_by_id(article_id):
     return Article.query.get(article_id)
 
 
-def save_article(title,image,description,content,pub_date,news_url,user):
+def save_article(title,image,description,content,pub_date,news_url,note,user):
     """Save an article to your profile."""
-    article = Article(title=title,
-                    image=image,
-                    description=description,
-                    content = content,
-                    pub_date=datetime.strptime(pub_date, "%Y-%m-%dT%H:%M:%SZ"),
-                    news_url=news_url
-                    )
+    article = Article(
+        title=title,
+        image=image,
+        description=description,
+        content = content,
+        pub_date=datetime.strptime(pub_date, "%Y-%m-%dT%H:%M:%SZ"),
+        news_url=news_url
+        )
     
     db.session.add(article)
     
@@ -54,8 +55,11 @@ def save_article(title,image,description,content,pub_date,news_url,user):
     
     # 2.0 add rating and notes during save event
     #creating the relationship between user and the saved article
-    saved_article = Saved(user=user,
-                        article=article)
+    saved_article = Saved(
+        user=user,
+        article=article,
+        notes=note
+        )
                         #   notes=notes,
                         #   rating=rating)
     
@@ -95,6 +99,7 @@ def get_saved_news(user, origin="saved"):
             "news_url" : article.news_url,
             "saved_news_id" : entry.id,
             "origin" : origin,
+            "note" : entry.notes,
             "article_id" : article.article_id
 
         }

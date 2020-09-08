@@ -100,7 +100,7 @@ def save_article():
     content = request.form.get("content")
     pub_date = request.form.get("pub_date")
     url = request.form.get("url")
-    note = request.form.get("phrase_selector")
+    note = request.form.get("note")
 
     
     user = get_logged_in_user()
@@ -111,6 +111,7 @@ def save_article():
         content=content,
         pub_date=pub_date,
         news_url=url,
+        note=note,
         user=user)
 
     return "Article has been saved!"
