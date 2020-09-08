@@ -100,6 +100,7 @@ def save_article():
     content = request.form.get("content")
     pub_date = request.form.get("pub_date")
     url = request.form.get("url")
+    note = request.form.get("phrase_selector")
 
     
     user = get_logged_in_user()
@@ -177,9 +178,16 @@ def get_dashboard():
     if not is_logged_in():
         return redirect('/login')
     
-    user = get_logged_in_user()
-    print(f"Successfully logged in as {user.fname} {user.lname}")
-    return render_template('dashboard.html', logged_in_user=user)
+    logged_in_user = get_logged_in_user()
+
+    subscriptions_list = crud.get_subsciptions_by_user(logged_in_user.user_id)
+
+    print(f"Successfully logged in as {logged_in_user.fname} {logged_in_user.lname}")
+    return render_template(
+        'dashboard.html', 
+        logged_in_user=logged_in_user,
+        subscriptions_list=subscriptions_list
+    )
 
 #TODO
 @app.route('/settings', methods=['GET','POST'])
@@ -234,8 +242,8 @@ def return_profile(profile_id):
     
     print("Check Subscription " + str(profile_id))
     is_subscribed = crud.is_subscribed(logged_in_user.user_id, profile_id)
-
     subscriptions_list = crud.get_subsciptions_by_user(profile_id)
+
     return render_template('/profile.html', user=user,
                                             saved_articles=json.dumps(saved_articles),
                                             logged_in_user=logged_in_user,

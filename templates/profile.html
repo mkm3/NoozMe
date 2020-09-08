@@ -1,30 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<title>NoozMe - Profile</title>
+<head>
 
-<script src="/static/profile.js"></script>
-<script src="/static/user_search.js"></script>
+    <title>NoozMe - Profile</title>
+
+    <script src="/static/profile.js"></script>
+    <script src="/static/user_search.js"></script>
 
 </head>
 
 <body>
 
-  <!-- Typeahead Search Engine to find other users -->
-  <form>
-    <div class="typeahead__container">
-        <div class="typeahead__field">
-            <div class="typeahead__query">
-                <input id="search-bar" type="text" placeholder="Type a username.." autocomplete="off">
-            </div>
-            <div class="typeahead__button">
-                <input type="submit" name="search">
-                    <i class="typeahead__search-icon"></i>
-                </button>
+    <!-- Typeahead Search Engine to find other users -->
+    <form>
+        <div class="typeahead__container">
+            <div class="typeahead__field">
+                <div class="typeahead__query">
+                    <input id="search-bar" type="text" placeholder="Type a username.." autocomplete="off">
+                </div>
+                <div class="typeahead__button">
+                    <input type="submit" name="search">
+                        <i class="typeahead__search-icon"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-  </form>
+    </form>
 
     {{user.fname}}'s NoozMe Profile!
     <br />
@@ -33,12 +35,12 @@
     <!-- Subscribe/Unsubscribe Button -->
     {% if is_not_logged_in_user %}
     <form id="subscribe">
-      <input type="hidden" name="profile_user_id" value="{{user.user_id}}">
-      {% if is_subscribed %}
-      <button id="subscribe_btn">UNSUBSCRIBE</button>
-      {% else %}
-      <button id="subscribe_btn">SUBSCRIBE</button>
-      {% endif %}
+        <input type="hidden" name="profile_user_id" value="{{user.user_id}}">
+        {% if is_subscribed %}
+        <button id="subscribe_btn">UNSUBSCRIBE</button>
+        {% else %}
+        <button id="subscribe_btn">SUBSCRIBE</button>
+        {% endif %}
     </form>
     {% endif %}
     <br />
@@ -47,10 +49,14 @@
     <div>
     <h3>Subscriptions</h3>
     {% for sub in subscriptions_list %}
-        <a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} {{sub.subscribe_to.username}} </a>
+        <a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a>
     {% endfor %}
     </div>
     <br />
+
+
+
+
 
     <!-- Display user's saved news -->
     <h3>Saved News</h3>
@@ -58,6 +64,143 @@
         <div id="newsResults"></div>
     </div>
 
+
+
+
+
+    <br />
+    <!-- Button trigger modal-->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConfirmDelete">New Save Button</button>
+    
+    <!--Modal: modalConfirmDelete-->
+    <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+        <!--Content-->
+        <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+            <p class="heading">How would you describe this article?</p>
+            </div>
+    
+            <!--Body-->
+            <div class="modal-body">
+    
+            <!-- <i class="fas fa-times fa-4x animated rotateIn"></i> -->
+    
+            <form action="/save-article" method='post'>
+                <p>
+                    <select name="phrase_id" id="phrase_selector">
+                        <option value="adorable"> adorable </option>
+                        <option value="bad"> bad </option>
+                        <option value="baffleing"> baffling </option>
+                        <option value="concise"> concise </option>
+                        <option value="crazy"> crazy </option>
+                        <option value="credible"> credible </option>
+                        <option value="critical"> critical </option>
+                        <option value="cute"> cute </option>
+                        <option value="delightful"> delightful </option>
+                        <option value="disgraceful"> disgraceful </option>
+                        <option value="dispicable"> dispicable </option>
+                        <option value="excellent"> excellent </option>
+                        <option value="exciting"> exciting </option>
+                        <option value="fake"> fake </option>
+                        <option value="fantastic"> fantastic </option>
+                        <option value="fascinating"> fascinating </option>
+                        <option value="happy"> happy </option>
+                        <option value="helpful"> helpful </option>
+                        <option value="horribly_written"> horribly written </option>
+                        <option value="horrifying"> horrifying </option>
+                        <option value="informative"> informative </option>
+                        <option value="insightful"> insightful </option>
+                        <option value="inspiring"> inspiring </option>
+                        <option value="interesting"> interesting </option>
+                        <option value="motivating"> motivating </option>
+                        <option value="mysterious"> mysterious </option>
+                        <option value="not_credible"> not credible </option>
+                        <option value="poorly_written"> poorly written </option>
+                        <option value="quirky"> quirky </option>
+                        <option value="ridiculous"> ridiculous </option>
+                        <option value="sarcastic"> sarcastic </option>
+                        <option value="satirical"> satirical </option>
+                        <option value="shocking"> shocking </option>
+                        <option value="silly"> silly </option>
+                        <option value="sinical"> sinical </option>
+                        <option value="stupid"> stupid </option>
+                        <option value="suprising"> suprising </option>
+                        <option value="suspicious"> suspicious </option>
+                        <option value="well_written"> well written </option>
+                        <option value="wonderful"> wonderful </option>
+                    </select> 
+                </p>
+            </form>
+
+            </div>
+    
+            <!--Footer-->
+            <div class="modal-footer flex-center">
+            <a href="" class="btn  btn-outline-danger">Save Article</a>
+            <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">Cancel</a>
+            </div>
+        </div>
+        <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: modalConfirmDelete-->
+
+
+
+
+    <!-- Rating Selection -->
+    <br />
+    <br />
+    <form action="/save-article" method='post'>
+        <p>
+            <label for="phrase_id"><b>(User) considered this article to be...</b></label>
+            <select name="phrase_id" id="phrase_selector">
+                <option value="adorable"> adorable </option>
+                <option value="bad"> bad </option>
+                <option value="baffleing"> baffling </option>
+                <option value="concise"> concise </option>
+                <option value="crazy"> crazy </option>
+                <option value="credible"> credible </option>
+                <option value="critical"> critical </option>
+                <option value="cute"> cute </option>
+                <option value="delightful"> delightful </option>
+                <option value="disgraceful"> disgraceful </option>
+                <option value="dispicable"> dispicable </option>
+                <option value="excellent"> excellent </option>
+                <option value="exciting"> exciting </option>
+                <option value="fake"> fake </option>
+                <option value="fantastic"> fantastic </option>
+                <option value="fascinating"> fascinating </option>
+                <option value="happy"> happy </option>
+                <option value="helpful"> helpful </option>
+                <option value="horribly_written"> horribly written </option>
+                <option value="horrifying"> horrifying </option>
+                <option value="informative"> informative </option>
+                <option value="insightful"> insightful </option>
+                <option value="inspiring"> inspiring </option>
+                <option value="interesting"> interesting </option>
+                <option value="motivating"> motivating </option>
+                <option value="mysterious"> mysterious </option>
+                <option value="not_credible"> not_credible </option>
+                <option value="poorly_written"> poorly_written </option>
+                <option value="quirky"> quirky </option>
+                <option value="ridiculous"> ridiculous </option>
+                <option value="sarcastic"> sarcastic </option>
+                <option value="satirical"> satirical </option>
+                <option value="shocking"> shocking </option>
+                <option value="silly"> silly </option>
+                <option value="sinical"> sinical </option>
+                <option value="stupid"> stupid </option>
+                <option value="suprising"> suprising </option>
+                <option value="suspicious"> suspicious </option>
+                <option value="well_written"> well_written </option>
+                <option value="wonderful"> wonderful </option>
+            </select> 
+        </p>
+    </form>
 
 
 <script> const saved_articles = {{saved_articles|safe}}</script>

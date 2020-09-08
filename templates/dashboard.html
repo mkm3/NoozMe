@@ -62,8 +62,7 @@
       </form>
 
       <br />
-      Search by Category
-      <br />
+      <h3>Search by Category</h3>
       <a data-value="general" class="category-search" href=""><i class="fa fa-globe"> General </i></a>
       <a data-value="business" class="category-search" href=""><i class="fa fa-building"> Business </i></a>
       <a data-value="entertainment" class="category-search" href=""><i class="fa fa-film"> Entertainment </i></a>
@@ -71,10 +70,20 @@
       <a data-value="science" class="category-search" href=""><i class="fa fa-flask"> Science </i></a>
       <a data-value="sports" class="category-search" href=""><i class="fas fa-futbol"> Sports </i></a>
       <a data-value="technology" class="category-search" href=""><i class="fa fa-laptop"> Technology </i></a>
+      <br />
+      <br />
+
+      <!-- Subscriptions -->
+      <div>
+        <h3>Subscriptions</h3>
+        {% for sub in subscriptions_list %}
+            <a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a>
+        {% endfor %}
+      </div>
+      <br />
 
 
       <!--loader to show that search is running-->
-      
       <div id="loader" style="display:none;">
         <br />
         <div class="progress">

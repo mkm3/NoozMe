@@ -55,7 +55,7 @@ def save_article(title,image,description,content,pub_date,news_url,user):
     # 2.0 add rating and notes during save event
     #creating the relationship between user and the saved article
     saved_article = Saved(user=user,
-                          article=article)
+                        article=article)
                         #   notes=notes,
                         #   rating=rating)
     
@@ -96,6 +96,7 @@ def get_saved_news(user, origin="saved"):
             "saved_news_id" : entry.id,
             "origin" : origin,
             "article_id" : article.article_id
+
         }
         saved_news_feed.append(article_item)
     print(saved_news_feed)

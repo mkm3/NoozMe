@@ -55,13 +55,21 @@ for country_code, country in zip(country_codes, countries):
 
 db.session.add_all(country_entries)
 
+#Phrase for ratings (i.e. "<User.fname> thought this article was <phrase>.")
+phrases = ["adorable","bad","baffling","concise","crazy","credible","critical","cute","delightful",
+            "disgraceful","dispicable","excellent","exciting","fake","fantastic","fascinating",
+            "happy","helpful","horribly written","horrifying","informative","insightful","inspiring",
+            "interesting","motivating","mysterious","not credible","poorly written","quirky","ridiculous",
+            "sarcastic","satirical","shocking","silly","sinical","stupid","suprising","suspicious",
+            "well written","wonderful"]
+
 
 #Test users
 user1 = User(fname="Max", lname="Murphy", email="mrm@gmail.com", username="murphdog777", password="password123", preferred_category_id=1, preferred_country_id=1)
 user2 = User(fname="Michelle", lname="Macaraeg", email="mkm@gmail.com", username="mikkster3", password="password123", preferred_category_id=1, preferred_country_id=1)
-user3 = User(fname="Robbie", lname="Macaraeg", email="ram@gmail.com", username="robizamac", password="password123", preferred_category_id=1, preferred_country_id=1)
-user4 = User(fname="Charlie", lname="Bear", email="ruff@gmail.com", username="pumpkinhead", password="password123", preferred_category_id=1, preferred_country_id=1)
-user5 = User(fname="Hadley", lname="Kitten", email="meow@gmail.com", username="snuggles", password="password123", preferred_category_id=1, preferred_country_id=1)
+user3 = User(fname="Robbie", lname="Macaraeg", email="ram@gmail.com", username="robizamac6", password="password123", preferred_category_id=1, preferred_country_id=1)
+user4 = User(fname="Charlie", lname="Bear", email="ruff@gmail.com", username="pumpkinhead12", password="password123", preferred_category_id=1, preferred_country_id=1)
+user5 = User(fname="Hadley", lname="Kitten", email="meow@gmail.com", username="snuggles8", password="password123", preferred_category_id=1, preferred_country_id=1)
 
 users = [user1, user2, user3, user4, user5]
 db.session.add_all(users)
