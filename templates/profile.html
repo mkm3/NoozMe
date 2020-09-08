@@ -6,6 +6,7 @@
     <title>NoozMe - Profile</title>
 
     <script src="/static/profile.js"></script>
+    <script src="/static/subscription.js"></script>
     <script src="/static/user_search.js"></script>
 
 </head>
@@ -46,11 +47,13 @@
     <br />
 
     <!-- Subscriptions -->
-    <div>
     <h3>Subscriptions</h3>
+    <div>
+        <ul>
     {% for sub in subscriptions_list %}
-        <a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a>
+            <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
     {% endfor %}
+        </ul>
     </div>
     <br />
 
@@ -66,14 +69,10 @@
 
 
 
-
-
     <br />
-    <!-- Button trigger modal-->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalConfirmDelete">New Save Button</button>
     
     <!--Modal: modalConfirmDelete-->
-    <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalSaveArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
         <!--Content-->

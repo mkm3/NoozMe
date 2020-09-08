@@ -29,7 +29,6 @@
 
 
 <body>
-
       <!-- Typeahead Search Engine to find other users -->
 <form>
     <div class="typeahead__container">
@@ -52,8 +51,8 @@
 
       <form method='get'>
           <div class="input-field">
-              <p>You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</p>
-              Search
+              <h6>You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</h6>
+              <h3>Search</h3>
               <input type="text" id="searchquery">
               <input type="submit" id="searchbtn" value="search">
               <input type="reset" id="searchbtn" value="clear"  style="margin-top:3px;">
@@ -75,10 +74,12 @@
 
       <!-- Subscriptions -->
       <div>
-        <h3>Subscriptions</h3>
+      <h3>Subscriptions</h3>
+      <ul>
         {% for sub in subscriptions_list %}
-            <a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a>
+          <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
         {% endfor %}
+      </ul>
       </div>
       <br />
 

@@ -11,7 +11,7 @@ $(document).ready(function(){
         if(query !== ""){
           
           $.ajax({
-             
+              
             url: url,
             method: "GET",
             dataType: "json",
@@ -43,14 +43,14 @@ $(document).ready(function(){
               
               if(output !== ""){
                 $("#newsResults").html(output);
-                 M.toast({
+                  M.toast({
                   html: "There you go, nice reading",
                   classes: 'green'
                 });
                 
               }else{
                 let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;
-                 $("#newsResults").html(noNews);
+                  $("#newsResults").html(noNews);
                 M.toast({
                   html: "This news isn't available",
                   classes: 'red'
@@ -60,13 +60,13 @@ $(document).ready(function(){
             },
             // if user encounters an error during keyword search
             error: function(){
-               let internetFailure = `
-               <div style="font-size:34px; text-align:center; margin-top:40px;">Please check your internet connection and try again.
-               <img src="img/internet.png" class="responsive-img">
-               </div>`;
-               
+                let internetFailure = `
+                <div style="font-size:34px; text-align:center; margin-top:40px;">Please check your internet connection and try again.
+                <img src="img/internet.png" class="responsive-img">
+                </div>`;
+
               $("#newsResults").html(internetFailure);
-               M.toast({
+                M.toast({
                   html: "We encountered an error, please try again",
                   classes: 'red'
                 });
@@ -78,7 +78,7 @@ $(document).ready(function(){
         }else{
           let missingVal = `<div style="font-size:34px; text-align:center; margin-top:40px;">Please enter any search term in the search engine</div>`;
           $("#newsResults").html(missingVal);
-           M.toast({
+            M.toast({
                   html: "Please enter something",
                   classes: 'red'
                 });

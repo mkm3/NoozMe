@@ -40,7 +40,7 @@ function showNews(news) {
             <input type="hidden" name="pub_date" value="${news[i].pub_date}">
             <input type="hidden" name="news_url" value="${news[i].news_url}">
             <input type="hidden" name="article_id" value="${news[i].article_id}">
-            <button>Save Article</button>
+            <button data-toggle="modal" data-target="#modalSaveArticle">Save Article</button>
         </form>`;
     }
 
@@ -79,6 +79,17 @@ function showNews(news) {
                 alert(res);
             });
         });
+
+
+        $('.save-article-form').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+            })
 
 
         $('.remove-article-form').on('submit', (evt) => {
