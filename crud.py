@@ -171,14 +171,15 @@ def is_subscribed(user_id, profile_user_id):
     """Check if user is subscribed to another user."""
 
     subscription = Subscription.query.filter(
-        Subscription.user_id == user_id and 
-        Subscription.subscribe_to == profile_user_id
+        Subscription.user_id == user_id,
+        Subscription.subscribe_to_id == profile_user_id
         ).first()
+    print("IS SUBSCRIBED")
     print(subscription)
+    print(subscription is not None)
     return subscription is not None
 
 
-#TODO
 def update_user(user_id, email, preferred_category_id, preferred_country_id):
     """Updates user settings (category and country)."""
     user = User.query.get(user_id)
@@ -189,6 +190,13 @@ def update_user(user_id, email, preferred_category_id, preferred_country_id):
 
     db.session.commit()
     return user
+
+
+def get_subsciptions_by_user(user_id):
+    """Get user's list of subscriptions."""
+    user = get_user_by_id(user_id)
+    subscriptions = user.subscriptions
+    return subscriptions
     
 
 #TODO NTH

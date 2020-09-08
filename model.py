@@ -83,8 +83,8 @@ class Subscription(db.Model):
     subscribe_to_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
     created = db.Column(db.DateTime, default=datetime.now())
     
-    user = db.relationship('User', primaryjoin = user_id == User.user_id)
-    subscribe_to = db.relationship('User', primaryjoin = subscribe_to_id == User.user_id)
+    user = db.relationship('User', primaryjoin = user_id == User.user_id, backref='subscriptions')
+    subscribe_to = db.relationship('User', primaryjoin = subscribe_to_id == User.user_id, backref='subscribers')
 
     def __repr__(self):
         return f'<Subscription id={self.id} user={self.user} subscribe_to={self.subscribe_to} created={self.created}>'

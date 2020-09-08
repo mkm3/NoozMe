@@ -43,10 +43,22 @@
     {% endif %}
     <br />
 
+    <!-- Subscriptions -->
+    <div>
+    <h3>Subscriptions</h3>
+    {% for sub in subscriptions_list %}
+        <a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} {{sub.subscribe_to.username}} </a>
+    {% endfor %}
+    </div>
+    <br />
+
     <!-- Display user's saved news -->
+    <h3>Saved News</h3>
     <div class="row">
         <div id="newsResults"></div>
     </div>
+
+
 
 <script> const saved_articles = {{saved_articles|safe}}</script>
 </body>

@@ -93,8 +93,9 @@ subscription2 = Subscription(user=user2, subscribe_to=user3, created=datetime.no
 subscription3 = Subscription(user=user3, subscribe_to=user4, created=datetime.now())
 subscription4 = Subscription(user=user4, subscribe_to=user5, created=datetime.now())
 subscription5 = Subscription(user=user5, subscribe_to=user1, created=datetime.now())
-#TODO create subscription lists
-#TODO db.session.add_all(subscriptions)
+
+subscriptions = [subscription1, subscription2, subscription3, subscription4, subscription5]
+db.session.add_all(subscriptions)
 
 
 #commit all tests to database tables

@@ -52,7 +52,7 @@
 
       <form method='get'>
           <div class="input-field">
-              <p>You've successfully logged in as {{user.fname}} {{user.lname}}.</p>
+              <p>You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</p>
               Search
               <input type="text" id="searchquery">
               <input type="submit" id="searchbtn" value="search">
@@ -72,9 +72,11 @@
       <a data-value="sports" class="category-search" href=""><i class="fas fa-futbol"> Sports </i></a>
       <a data-value="technology" class="category-search" href=""><i class="fa fa-laptop"> Technology </i></a>
 
-      
+
       <!--loader to show that search is running-->
+      
       <div id="loader" style="display:none;">
+        <br />
         <div class="progress">
           <div class="indeterminate"></div>
         </div>
@@ -83,6 +85,7 @@
 
       <!-- display news results here -->
       <div class="row">
+        <br />
         <div id="newsResults"></div>
       </div>
 

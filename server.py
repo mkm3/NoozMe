@@ -1,4 +1,5 @@
 
+from logging import LoggerAdapter
 import profile
 from flask import (Flask, render_template, request, flash, session, jsonify,
                    redirect, url_for)
@@ -178,7 +179,7 @@ def get_dashboard():
     
     user = get_logged_in_user()
     print(f"Successfully logged in as {user.fname} {user.lname}")
-    return render_template('dashboard.html', user=user)
+    return render_template('dashboard.html', logged_in_user=user)
 
 #TODO
 @app.route('/settings', methods=['GET','POST'])
@@ -200,8 +201,8 @@ def get_or_update_settings():
             preferred_country_id=new_country_pref)
     
     return render_template(
-        'settings.html', 
-        user=user,
+        'settings.html',
+        logged_in_user=user,
         categories=categories,
         countries=countries
         )
@@ -231,12 +232,16 @@ def return_profile(profile_id):
     else:       
         saved_articles = crud.get_saved_news(user, "subscription")
     
+    print("Check Subscription " + str(profile_id))
     is_subscribed = crud.is_subscribed(logged_in_user.user_id, profile_id)
-        
+
+    subscriptions_list = crud.get_subsciptions_by_user(profile_id)
     return render_template('/profile.html', user=user,
                                             saved_articles=json.dumps(saved_articles),
+                                            logged_in_user=logged_in_user,
                                             is_not_logged_in_user=is_not_logged_in_user,
-                                            is_subscribed=is_subscribed)
+                                            is_subscribed=is_subscribed,
+                                            subscriptions_list=subscriptions_list)
 
 
 @app.route('/api/toggle-subscribe', methods=['POST'])
