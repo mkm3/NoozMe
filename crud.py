@@ -101,7 +101,6 @@ def get_saved_news(user, origin="saved"):
             "origin" : origin,
             "note" : entry.notes,
             "article_id" : article.article_id
-
         }
         saved_news_feed.append(article_item)
     print(saved_news_feed)
@@ -139,7 +138,7 @@ def get_country_entries():
 
 def remove_saved_article(user_id, saved_news_id,):
     """Remove saved article under user profile."""
-    article_to_remove = Saved.query.filter(Saved.user_id == user_id and Saved.id == saved_news_id).first()
+    article_to_remove = Saved.query.filter(Saved.user_id == user_id, Saved.id == saved_news_id).first()
 
     if article_to_remove:
         db.session.delete(article_to_remove)
@@ -165,7 +164,7 @@ def subscribe(user_id, profile_user_id):
 def unsubscribe(user_id, profile_user_id):
     """Unfollow another user."""
     subscription = Subscription.query.filter(
-        Subscription.user_id == user_id and 
+        Subscription.user_id == user_id, 
         Subscription.subscribe_to == profile_user_id
         ).first()
 

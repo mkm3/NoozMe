@@ -1,52 +1,127 @@
-const { uniqueSort } = require("jquery");
+// // MDB Lightbox Init
+// $(function () {
+//     $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+// });
 
-function showNews(news) {
-        
+function renderNewsCard1(news) {
     let output = "";
-    for(var i in news){
-    output +=`
-        <div class="col l6 m6 s12">
-            <h4>${news[i].title}</h4>
-            <img src="${news[i].image}" class="responsive-img">
-            <p>${news[i].description}</p>
-            <p>${news[i].content}</p>
-            <p>Published on: ${news[i].pub_date}</p>
-            <button><a href="${news[i].news_url}" class="btn">Read more</a></button>`;
-
-
-    if (news[i].note != undefined) {
+    if (news.note != undefined) {
         output +=`
-        <p>${user.fname} thought this article was <b>${news[i].note}</b>.</p>
-        `
-    }
+                <figure class="col-md-4">
+                    <a class="black-text" href="${news.news_url}"
+                    data-size="1600x1067">
+                    <img alt="picture" src="${news.image}"
+                        class="img-fluid">
+                        <div class="row">
+                        <br />
+                        <div id="newsResults"></div>
+                        </div>
+                    <h3 class="text-center my-3">"${news.note}"</h3>
+                    </a>
+                </figure>`
+    } else {
+        output +=`
+            <figure class="col-md-3">
+                <a class="black-text" href="${news.news_url}"
+                data-size="1600x1067">
+                <img alt="picture" src="${news.image}"
+                    class="img-fluid">
+                    <div class="row">
+                    <br />
+                    <div id="newsResults"></div>
+                    </div>
+                <h3 class="text-center my-3" src="${news.news_url}"> Read More </h3>
+                </a>
+            </figure>`
+    };
 
     //handles remove button - remove shows when article has a saved_news_id
-    if (news[i].origin === "saved") { // implies the article has been `saved to the database
+    if (news.origin === "saved") { // implies the article has been `saved to the database
         output +=`
-        <form class="remove-article-form">
-            <input type="hidden" name="saved_news_id" value="${news[i].saved_news_id}">
-            <button>Remove Article</button>
-        </form>
+        <button class="remove-article-btn" data-saved_news_id="${news.saved_news_id}">Remove Article</button>
         `
-
     } else {
         output +=`
             <button data-toggle="modal" data-target="#modalSaveArticle"
-                                        data-origin="${news[i].origin}"
-                                        data-title="${news[i].title}"
-                                        data-image="${news[i].image}"
-                                        data-description="${news[i].description}"
-                                        data-content="${news[i].description}"
-                                        data-pub_date="${news[i].pub_date}"
-                                        data-news_url="${news[i].news_url}"
-                                        data-article_id="${news[i].article_id}"
+                                        data-origin="${news.origin}"
+                                        data-title="${news.title}"
+                                        data-image="${news.image}"
+                                        data-description="${news.description}"
+                                        data-content="${news.description}"
+                                        data-pub_date="${news.pub_date}"
+                                        data-news_url="${news.news_url}"
+                                        data-article_id="${news.article_id}"
                                         >Save Article</button>
                                         `;
     }
 
     //closes the div
-    output += `</div>`;
+    output += `</div>`;  
+    return output;
+}
 
+
+function renderNewsCard2(news) {
+    let output = "";
+    output +=`
+            <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                <img alt="picture" src="${news.image}"
+                    class="img-fluid">
+                <p class="card-text">${news.description}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">`
+
+    if (news.origin === "saved") { // implies the article has been `saved to the database
+        output +=`<button type="button" class="remove-article-btn btn btn-sm btn-outline-secondary" data-saved_news_id="${news.saved_news_id}">Remove</button>`
+    } else {
+        output +=`                        
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalSaveArticle"
+                data-origin="${news.origin}"
+                data-title="${news.title}"
+                data-image="${news.image}"
+                data-description="${news.description}"
+                data-content="${news.description}"
+                data-pub_date="${news.pub_date}"
+                data-news_url="${news.news_url}"
+                data-article_id="${news.article_id}"
+                >Save</button>`
+    }
+
+    if (news.note != undefined) {
+        output +=`                        
+                <a target="_blank" rel="noopener noreferrer" href="${news.news_url}" class="btn btn-sm btn-outline-secondary">Read More</a>
+                </div>
+                <small class="text-muted">"${news.note}"</small>
+                </div>
+                </div>
+                </div>
+                </div>`
+    } else {
+        output +=`                        
+                <a target="_blank" rel="noopener noreferrer" href="${news.news_url}" class="btn btn-sm btn-outline-secondary">Read More</a>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>`
+    };
+
+    //closes the div
+    output += `</div>`;  
+    return output;
+}
+
+
+
+
+
+function showNews(news) {
+        
+    let output = "";
+    for(var i in news) {
+        output += renderNewsCard2(news[i]);
     }
     
     if (output !== ""){
@@ -59,7 +134,7 @@ function showNews(news) {
             var modal = $(this)
             modal.find('#save-article-btn').on("click", function (evt) {
                 evt.preventDefault();
-                console.log('save-article-btn clicked')
+                console.log("Saved Button Clicked!");
                 article_data = button.data()
                 const formInputs = {
                     'title': article_data.title,
@@ -71,20 +146,28 @@ function showNews(news) {
                     'note' : modal.find('#phrase_selector').val()
                 };
     
-                console.log(formInputs)
 
                 $.post('/save-article', formInputs, (res) => {
-                    modal('hide');
+                    $('#modalSaveArticle').modal('hide');
                 });
             });
         });
 
+        $('#modalSaveArticle').on('hide.bs.modal', function (evt) {
+            var modal = $(this);
+            modal.find('#save-article-btn').off("click");
+        });
 
-        $('.remove-article-form').on('submit', (evt) => {
+
+        $('.remove-article-btn').on('click', (evt) => {
             evt.preventDefault();
+            const button = $(evt.target);
+            console.log(button.data("saved_news_id"));
             const formInputs = {
-            'saved_news_id': evt.target[0].value,
+                'saved_news_id': button.data("saved_news_id"),
             };
+
+            console.log(formInputs);
 
             $.post('/remove-article', formInputs, (res) => {
                 alert(res)
@@ -96,11 +179,5 @@ function showNews(news) {
         let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;
         $("#newsResults").html(noNews);
     }  
-
-
-    // // Rating function - to show article notes by user
-    // function getRating() {
-
-    // }
 
 }

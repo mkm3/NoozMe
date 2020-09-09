@@ -3,23 +3,6 @@
   
   <title>NoozMe - Home</title>
 
-  <!-- Load Bootstrap 4 -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-  <!-- Load Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
-
-  <!-- Load our stylesheet -->
-  <link rel="stylesheet"href="/static/css/styles.css">
-
-  <!-- Optional CSS for Typeahead search -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.css">
-
-  <!-- Required JavaScript for Typeahead search -->
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="/static/show_news.js"></script>
   <script src="/static/dashboard.js"></script>
   <script src="/static/user_search.js"></script>
@@ -29,38 +12,155 @@
 
 
 <body>
-      <!-- Typeahead Search Engine to find other users -->
-<form>
-    <div class="typeahead__container">
-        <div class="typeahead__field">
-            <div class="typeahead__query">
-                <input id="search-bar" type="text" placeholder="Type a username.." autocomplete="off">
-            </div>
-            <div class="typeahead__button">
-                <input type="submit" name="search">
-                    <i class="typeahead__search-icon"></i>
-                </button>
+
+
+<!--halsdkfjhasdlkjfhadskf-->
+
+
+<header>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <h4 class="text-white">Contact</h4>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white">Follow on Twitter</a></li>
+            <li><a href="#" class="text-white">Like on Facebook</a></li>
+            <li><a href="#" class="text-white">Email me</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+# of saved articles
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+            <!-- Typeahead Search Engine to find other users -->
+      <form>
+        <div class="typeahead__container">
+            <div class="typeahead__field">
+                <div class="typeahead__query">
+                    <input id="search-bar" type="text" placeholder="Type a username.." autocomplete="off">
+                </div>
+                <div class="typeahead__button">
+                    <input type="submit" name="search">
+                        <i class="typeahead__search-icon"></i>
+                    </button>
+                </div>
             </div>
         </div>
+      </form>
+
+
+      <h1>NoozMe</h1>
+      <p class="lead text-muted">Service Description or Business Mantra</p>
+      <p>
+        <div>
+          <h3>Search by Category</h3>
+          <a data-value="general" class="category-search" href=""><i class="fa fa-globe"> General </i></a>
+          <a data-value="business" class="category-search" href=""><i class="fa fa-building"> Business </i></a>
+          <a data-value="entertainment" class="category-search" href=""><i class="fa fa-film"> Entertainment </i></a>
+          <a data-value="health" class="category-search" href=""><i class="fa fa-medkit"> Health </i></a>
+          <a data-value="science" class="category-search" href=""><i class="fa fa-flask"> Science </i></a>
+          <a data-value="sports" class="category-search" href=""><i class="fas fa-futbol"> Sports </i></a>
+          <a data-value="technology" class="category-search" href=""><i class="fa fa-laptop"> Technology </i></a>
+        </div>
+
+      </p>
     </div>
-</form>
+
+
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="input-field">
+        <form method='get'>
+          <input type="text" placeholder="Search by Keyword" id="searchquery">
+          <input type="submit" id="searchbtn" value="search">
+          <input type="reset" id="resetbtn" value="clear"  style="margin-top:3px;">
+        </form>
+      </div>
+
+      <!-- display news results here -->
+      <div class="row" id="newsResults"></div>
+
+      </div>
+    </div>
+  </div>
+
+  </main>
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!-- MVP Search Engine -->
-    <div class="container">
+  <div class="container">
 
-      <form method='get'>
-          <div class="input-field">
-              <h6>You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</h6>
-              <h3>Search</h3>
-              <input type="text" id="searchquery">
-              <input type="submit" id="searchbtn" value="search">
-              <input type="reset" id="resetbtn" value="clear"  style="margin-top:3px;">
-          </div>
+    <form method='get'>
+      <div class="input-field">
+          <h6>You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</h6>
+          <h3>Search</h3>
+          <input type="text" id="searchquery">
+          <input type="submit" id="searchbtn" value="search">
+          <input type="reset" id="resetbtn" value="clear"  style="margin-top:3px;">
+      </div>
 
-      </form>
+    </form>
 
-      <br />
+    <br />
+    <div class="col-md-4">
       <h3>Search by Category</h3>
       <a data-value="general" class="category-search" href=""><i class="fa fa-globe"> General </i></a>
       <a data-value="business" class="category-search" href=""><i class="fa fa-building"> Business </i></a>
@@ -69,55 +169,54 @@
       <a data-value="science" class="category-search" href=""><i class="fa fa-flask"> Science </i></a>
       <a data-value="sports" class="category-search" href=""><i class="fas fa-futbol"> Sports </i></a>
       <a data-value="technology" class="category-search" href=""><i class="fa fa-laptop"> Technology </i></a>
-      <br />
-      <br />
+    </div>
+    <br />
+    <br />
 
-      <!-- Subscriptions -->
-      <div>
-      <h3>Subscriptions</h3>
-      <ul>
-        {% for sub in subscriptions_list %}
-          <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
-        {% endfor %}
-      </ul>
-      </div>
-      <br />
+    <!-- Subscriptions -->
+    <div class="col-md-5">
+    <h3>Subscriptions</h3>
+    <ul>
+      {% for sub in subscriptions_list %}
+        <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
+      {% endfor %}
+    </ul>
+    </div>
+    <br />
 
 
       <!--loader to show that search is running-->
-      <div id="loader" style="display:none;">
-        <br />
-        <div class="progress">
-          <div class="indeterminate"></div>
-        </div>
+    <div id="loader" style="display:none;">
+      <br />
+      <div class="progress">
+        <div class="indeterminate"></div>
       </div>
+    </div>
+
 
 
       <!-- display news results here -->
-      <div class="row">
-        <br />
-        <div id="newsResults"></div>
-      </div>
+    <div class="row" id="newsResults"></div>
 
 
           <!--Modal: modalConfirmDelete-->
     <div class="modal fade" id="modalSaveArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+      <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
     <!--Content-->
-    <div class="modal-content text-center">
-        <!--Header-->
-        <div class="modal-header d-flex justify-content-center">
-        <p class="heading">How would you describe this article?</p>
-        </div>
+        <div class="modal-content text-center">
+          <!--Header-->
+          <div class="modal-header d-flex justify-content-center">
+          <p class="heading">How would you describe this article?</p>
+          </div>
 
-        <!--Body-->
-        <div class="modal-body">
+          <!--Body-->
+          <div class="modal-body">
 
-        <!-- <i class="fas fa-times fa-4x animated rotateIn"></i> -->
+          <!-- <i class="fas fa-times fa-4x animated rotateIn"></i> -->
 
-        <p>
-            <select name="phrase_id" id="phrase_selector">
+            <p>
+              <select name="phrase_id" id="phrase_selector">
                 <option value="adorable"> adorable </option>
                 <option value="bad"> bad </option>
                 <option value="baffling"> baffling </option>
@@ -128,6 +227,7 @@
                 <option value="cute"> cute </option>
                 <option value="cynical"> cynical </option>
                 <option value="delightful"> delightful </option>
+                <option value="delicious"> delicious </option>
                 <option value="disgraceful"> disgraceful </option>
                 <option value="despicable"> despicable </option>
                 <option value="excellent"> excellent </option>
@@ -137,7 +237,7 @@
                 <option value="fascinating"> fascinating </option>
                 <option value="happy"> happy </option>
                 <option value="helpful"> helpful </option>
-                <option value="horribly_written"> horribly written </option>
+                <option value="horribly written"> horribly written </option>
                 <option value="horrifying"> horrifying </option>
                 <option value="informative"> informative </option>
                 <option value="insightful"> insightful </option>
@@ -145,8 +245,8 @@
                 <option value="interesting"> interesting </option>
                 <option value="motivating"> motivating </option>
                 <option value="mysterious"> mysterious </option>
-                <option value="not_credible"> not credible </option>
-                <option value="poorly_written"> poorly written </option>
+                <option value="not credible"> not credible </option>
+                <option value="poorly written"> poorly written </option>
                 <option value="quirky"> quirky </option>
                 <option value="ridiculous"> ridiculous </option>
                 <option value="sarcastic"> sarcastic </option>
@@ -156,24 +256,26 @@
                 <option value="stupid"> stupid </option>
                 <option value="surprising"> surprising </option>
                 <option value="suspicious"> suspicious </option>
-                <option value="well_written"> well written </option>
+                <option value="well written"> well written </option>
                 <option value="wonderful"> wonderful </option>
+                <option value="yummy"> yummy </option>
             </select> 
-        </p>
+            </p>
 
-        </div>
+          </div>
 
         <!--Footer-->
-        <div class="modal-footer flex-center">
-        <a href="" class="btn  btn-outline-danger" id="save-article-btn">Save Article</a>
-        <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">Cancel</a>
+          <div class="modal-footer flex-center">
+          <a href="" class="btn  btn-outline-danger" id="save-article-btn">Save Article</a>
+          <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">Cancel</a>
+          </div>
         </div>
-    </div>
     <!--/.Content-->
+      </div>
     </div>
-</div>
 <!--Modal: modalConfirmDelete-->
 
+  </div>
 
 </body>
 </html>

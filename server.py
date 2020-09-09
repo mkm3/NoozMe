@@ -99,7 +99,7 @@ def save_article():
     description = request.form.get("description")
     content = request.form.get("content")
     pub_date = request.form.get("pub_date")
-    url = request.form.get("url")
+    url = request.form.get("news_url")
     note = request.form.get("note")
 
     
@@ -123,7 +123,7 @@ def save_another_users_saved_article():
     user = get_logged_in_user()
     user_id = user.user_id
     
-    article_id = request.form.get("article_id")
+    article_id = request.form["article_id"]
     crud.save_subscribed_article(user_id, article_id)
 
     return "You saved their article!"
@@ -132,7 +132,7 @@ def save_another_users_saved_article():
 @app.route('/remove-article', methods=['POST'])
 def remove_article():
     """Removed article from database"""
-    saved_news_id = request.form.get("saved_new_id")
+    saved_news_id = request.form["saved_news_id"]
     user_id = get_logged_in_user().user_id
     
     if crud.remove_saved_article(
