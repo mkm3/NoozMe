@@ -12,41 +12,53 @@
 
 
 <body>
-
-
-<!--halsdkfjhasdlkjfhadskf-->
-
-
 <header>
+
+
   <div class="collapse bg-dark" id="navbarHeader">
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          <h4 class="text-white">Subscriptions</h4>
+          <p class="text-muted">
+            <!-- Subscriptions -->
+            <div>
+              <ul>
+                {% for sub in subscriptions_list %}
+                  <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            <br />
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
+          <h4 class="text-white">Stream Live News</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
+            <li><a href="https://www.bbc.co.uk/iplayer/live/bbcnews?rewindTo=current" class="text-white">BBC</a></li>
+            <li><a href="https://www.cbsnews.com/live" class="text-white">CBSN</a></li>
+            <li><a href="https://go.cnn.com/?stream=cnn" class="text-white">CNN</a></li>
+            <li><a href="https://www.kqed.org/radio" class="text-white">KQED Radio</a></li>
+            <li><a href="https://www.npr.org/" class="text-white">NPR Radio</a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+
+
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-# of saved articles
+        <a class="text-white">You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</a>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
   </div>
+
+  
 </header>
 
 <main role="main">
@@ -70,8 +82,9 @@
       </form>
 
 
-      <h1>NoozMe</h1>
+      <!-- <h1>NoozMe</h1>
       <p class="lead text-muted">Service Description or Business Mantra</p>
+      -->
       <p>
         <div>
           <h3>Search by Category</h3>
@@ -98,6 +111,16 @@
           <input type="reset" id="resetbtn" value="clear"  style="margin-top:3px;">
         </form>
       </div>
+  <p></p>
+
+      <!--loader to show that search is running-->
+      <div id="loader" style="display:none;">
+        <br />
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+
 
       <!-- display news results here -->
       <div class="row" id="newsResults"></div>
@@ -109,95 +132,6 @@
   </main>
 
   </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- MVP Search Engine -->
-  <div class="container">
-
-    <form method='get'>
-      <div class="input-field">
-          <h6>You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</h6>
-          <h3>Search</h3>
-          <input type="text" id="searchquery">
-          <input type="submit" id="searchbtn" value="search">
-          <input type="reset" id="resetbtn" value="clear"  style="margin-top:3px;">
-      </div>
-
-    </form>
-
-    <br />
-    <div class="col-md-4">
-      <h3>Search by Category</h3>
-      <a data-value="general" class="category-search" href=""><i class="fa fa-globe"> General </i></a>
-      <a data-value="business" class="category-search" href=""><i class="fa fa-building"> Business </i></a>
-      <a data-value="entertainment" class="category-search" href=""><i class="fa fa-film"> Entertainment </i></a>
-      <a data-value="health" class="category-search" href=""><i class="fa fa-medkit"> Health </i></a>
-      <a data-value="science" class="category-search" href=""><i class="fa fa-flask"> Science </i></a>
-      <a data-value="sports" class="category-search" href=""><i class="fas fa-futbol"> Sports </i></a>
-      <a data-value="technology" class="category-search" href=""><i class="fa fa-laptop"> Technology </i></a>
-    </div>
-    <br />
-    <br />
-
-    <!-- Subscriptions -->
-    <div class="col-md-5">
-    <h3>Subscriptions</h3>
-    <ul>
-      {% for sub in subscriptions_list %}
-        <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
-      {% endfor %}
-    </ul>
-    </div>
-    <br />
-
-
-      <!--loader to show that search is running-->
-    <div id="loader" style="display:none;">
-      <br />
-      <div class="progress">
-        <div class="indeterminate"></div>
-      </div>
-    </div>
-
-
-
-      <!-- display news results here -->
-    <div class="row" id="newsResults"></div>
-
 
           <!--Modal: modalConfirmDelete-->
     <div class="modal fade" id="modalSaveArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -274,8 +208,6 @@
       </div>
     </div>
 <!--Modal: modalConfirmDelete-->
-
-  </div>
 
 </body>
 </html>
