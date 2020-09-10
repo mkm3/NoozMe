@@ -11,28 +11,81 @@
 
 </head>
 
-<body>
 
-    <!-- Typeahead Search Engine to find other users -->
-    <form>
-        <div class="typeahead__container">
-            <div class="typeahead__field">
-                <div class="typeahead__query">
-                    <input id="search-bar" type="text" placeholder="Type a username.." autocomplete="off">
+
+<!--Midway Point-->
+
+<body>
+    <header>
+    
+    
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">Subscriptions</h4>
+            <p class="text-muted">
+                <!-- Subscriptions -->
+                <div>
+                <ul class="list-unstyled">
+                    {% for sub in subscriptions_list %}
+                    <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
+                    {% endfor %}
+                </ul>
                 </div>
-                <div class="typeahead__button">
-                    <input type="submit" name="search">
-                        <i class="typeahead__search-icon"></i>
-                    </button>
-                </div>
+                <br />
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+            <h4 class="text-white">Stream Live News</h4>
+            <ul class="list-unstyled">
+                <li><a target="_blank" rel="noopener noreferrer" href="https://www.bbc.co.uk/iplayer/live/bbcnews?rewindTo=current" class="text-white">BBC</a></li>
+                <li><a target="_blank" rel="noopener noreferrer" href="https://www.cbsnews.com/live" class="text-white">CBSN</a></li>
+                <li><a target="_blank" rel="noopener noreferrer" href="https://go.cnn.com/?stream=cnn" class="text-white">CNN</a></li>
+                <li><a target="_blank" rel="noopener noreferrer" href="https://www.kqed.org/radio" class="text-white">KQED Radio</a></li>
+                <li><a target="_blank" rel="noopener noreferrer" href="https://www.npr.org/" class="text-white">NPR Radio</a></li>
+            </ul>
             </div>
         </div>
-    </form>
+        </div>
+    </div>
+    
+    
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+            <img src="/static/assets/NoozMeLogo2.png" width="30" height="30"></img>
+            <a class="text-white">You're viewing {{user.username}} - {{user.fname}} {{user.lname}}</a>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        </div>
+    </div>
+    
+    
+    </header>
+    
+    <main role="main">
+    
+    <section class="jumbotron text-center">
+        <div class="container">
 
-    {{user.fname}}'s NoozMe Profile!
-    <br />
-    <br />
 
+                <!-- Typeahead Search Engine to find other users -->
+        <form>
+            <div class="typeahead__container">
+                <div class="typeahead__field">
+                    <div class="typeahead__query">
+                        <input class="user-search" id="search-bar" type="text" placeholder="Search for Users" autocomplete="off">
+                    </div>
+                    <div class="typeahead__button">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br/>
+    
+    
     <!-- Subscribe/Unsubscribe Button -->
     {% if is_not_logged_in_user %}
     <form id="subscribe">
@@ -45,36 +98,25 @@
     </form>
     {% endif %}
     <br />
-
-    <!-- Subscriptions -->
-    <h3>Subscriptions</h3>
-    <div>
-        <ul>
-    {% for sub in subscriptions_list %}
-            <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
-    {% endfor %}
-        </ul>
-    </div>
-    <br />
-
-
-
-
-
-    <!-- Display user's saved news -->
-    <h3>Saved News</h3>
-    <div class="row" id="newsResults"></div>
-
-
-
-    <br />
     
-    <!--Modal: modalConfirmDelete-->
-    <div class="modal fade" id="modalSaveArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    
+        <!-- display news results here -->
+        <div class="row" id="newsResults"></div>
+    
+        </div>
+        </div>
+    </div>
+    
+    </main>
+    
+    </section>
+    
+            <!--Modal: modalConfirmDelete-->
+        <div class="modal fade" id="modalSaveArticle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
         <!--Content-->
-        <div class="modal-content text-center">
+            <div class="modal-content text-center">
             <!--Header-->
             <div class="modal-header d-flex justify-content-center">
             <p class="heading">How would you describe this article?</p>
@@ -85,12 +127,13 @@
     
             <!-- <i class="fas fa-times fa-4x animated rotateIn"></i> -->
     
-            <p>
+                <p>
                 <select name="phrase_id" id="phrase_selector">
                     <option value="adorable"> adorable </option>
                     <option value="bad"> bad </option>
                     <option value="baffling"> baffling </option>
                     <option value="concise"> concise </option>
+                    <option value="cool"> cool </option>
                     <option value="crazy"> crazy </option>
                     <option value="credible"> credible </option>
                     <option value="critical"> critical </option>
@@ -105,6 +148,7 @@
                     <option value="fake"> fake </option>
                     <option value="fantastic"> fantastic </option>
                     <option value="fascinating"> fascinating </option>
+                    <option value="funny"> funny </option>
                     <option value="happy"> happy </option>
                     <option value="helpful"> helpful </option>
                     <option value="horribly written"> horribly written </option>
@@ -130,8 +174,8 @@
                     <option value="wonderful"> wonderful </option>
                     <option value="yummy"> yummy </option>
                 </select> 
-            </p>
-
+                </p>
+    
             </div>
     
             <!--Footer-->
@@ -139,44 +183,16 @@
             <a href="" class="btn  btn-outline-danger" id="save-article-btn">Save Article</a>
             <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">Cancel</a>
             </div>
-        </div>
+            </div>
         <!--/.Content-->
         </div>
-    </div>
+        </div>
     <!--Modal: modalConfirmDelete-->
+    <script> const saved_articles = {{saved_articles|safe}}</script>
 
 
+    {% endblock %}  
 
+    </body>
+    </html>
 
-<script> const saved_articles = {{saved_articles|safe}} </script>
-</body>
-
-{% endblock %}
-
-
-
-
-    <div class="row">
-        <div class="col-md-12">
-    
-        <div id="mdb-lightbox-ui"></div>
-    
-        <div class="mdb-lightbox no-margin">
-    
-            <figure class="col-md-4">
-                <a class="black-text" href="${news[i].news_url}"
-                data-size="1600x1067">
-                <img alt="picture" src="${news[i].image}"
-                    class="img-fluid">
-                    <div class="row">
-                    <br />
-                    <div id="newsResults"></div>
-                    </div>
-                <h4 class="text-center my-3">${news[i].note}</h4>
-                </a>
-            </figure>
-    
-        </div>
-    
-        </div>
-    </div>

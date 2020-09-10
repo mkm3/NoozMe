@@ -136,20 +136,31 @@ function showNews(news) {
                 evt.preventDefault();
                 console.log("Saved Button Clicked!");
                 article_data = button.data()
-                const formInputs = {
-                    'title': article_data.title,
-                    'image': article_data.image,
-                    'description': article_data.description,
-                    'content': article_data.content,
-                    'pub_date': article_data.pub_date,
-                    'news_url': article_data.news_url,
-                    'note' : modal.find('#phrase_selector').val()
-                };
-    
 
-                $.post('/save-article', formInputs, (res) => {
-                    $('#modalSaveArticle').modal('hide');
-                });
+                if (article_data.article_id == undefined || article_data.article_id == "undefined") {
+                    const formInputs = {
+                        'title': article_data.title,
+                        'image': article_data.image,
+                        'description': article_data.description,
+                        'content': article_data.content,
+                        'pub_date': article_data.pub_date,
+                        'news_url': article_data.news_url,
+                        'note' : modal.find('#phrase_selector').val()
+                    };
+
+                    $.post('/save-article', formInputs, (res) => {
+                        $('#modalSaveArticle').modal('hide');
+                    });
+                } else {
+                    const formInputs = {
+                        'article_id' : article_data.article_id,
+                        'note' : modal.find('#phrase_selector').val()
+                    };
+                    
+                    $.post('/save-subscribed-article', formInputs, (res) => {
+                        $('#modalSaveArticle').modal('hide');
+                    });
+                }
             });
         });
 

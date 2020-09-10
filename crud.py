@@ -70,17 +70,18 @@ def save_article(title,image,description,content,pub_date,news_url,note,user):
     print(saved_article)
     
 
-def save_subscribed_article(user_id, article_id):
+def save_subscribed_article(user_id, article_id, notes):
     """Logged in user can save article that is under another user's saved_news feed."""
     user = User.query.get(user_id)
     article = Article.query.get(article_id)
     
-    saved_article = Saved(user=user, article=article)
+    saved_article = Saved(user=user, article=article, notes=notes)
     
     db.session.add(saved_article)
     db.session.commit()
 
     return True
+
 
 def get_saved_news(user, origin="saved"):
     """Grab saved news by user."""
@@ -165,7 +166,7 @@ def unsubscribe(user_id, profile_user_id):
     """Unfollow another user."""
     subscription = Subscription.query.filter(
         Subscription.user_id == user_id, 
-        Subscription.subscribe_to == profile_user_id
+        Subscription.subscribe_to_id == profile_user_id
         ).first()
 
     db.session.delete(subscription)

@@ -23,7 +23,7 @@
           <p class="text-muted">
             <!-- Subscriptions -->
             <div>
-              <ul>
+              <ul class="list-unstyled">
                 {% for sub in subscriptions_list %}
                   <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
                 {% endfor %}
@@ -34,11 +34,11 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Stream Live News</h4>
           <ul class="list-unstyled">
-            <li><a href="https://www.bbc.co.uk/iplayer/live/bbcnews?rewindTo=current" class="text-white">BBC</a></li>
-            <li><a href="https://www.cbsnews.com/live" class="text-white">CBSN</a></li>
-            <li><a href="https://go.cnn.com/?stream=cnn" class="text-white">CNN</a></li>
-            <li><a href="https://www.kqed.org/radio" class="text-white">KQED Radio</a></li>
-            <li><a href="https://www.npr.org/" class="text-white">NPR Radio</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.bbc.co.uk/iplayer/live/bbcnews?rewindTo=current" class="text-white">BBC</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.cbsnews.com/live" class="text-white">CBSN</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://go.cnn.com/?stream=cnn" class="text-white">CNN</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.kqed.org/radio" class="text-white">KQED Radio</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.npr.org/" class="text-white">NPR Radio</a></li>
           </ul>
         </div>
       </div>
@@ -49,7 +49,7 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <img src="/static/assets/NoozMeLogo2.png" width="30" height="30"></img>
         <a class="text-white">You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</a>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,16 +70,15 @@
         <div class="typeahead__container">
             <div class="typeahead__field">
                 <div class="typeahead__query">
-                    <input id="search-bar" type="text" placeholder="Type a username.." autocomplete="off">
+                    <input class="user-search" type="text" placeholder="Search for Users" autocomplete="off">
                 </div>
                 <div class="typeahead__button">
-                    <input type="submit" name="search">
-                        <i class="typeahead__search-icon"></i>
                     </button>
                 </div>
             </div>
         </div>
       </form>
+      <hr>
 
 
       <!-- <h1>NoozMe</h1>
@@ -87,7 +86,7 @@
       -->
       <p>
         <div>
-          <h3>Search by Category</h3>
+          <h4>Browse by Category</h4>
           <a data-value="general" class="category-search" href=""><i class="fa fa-globe"> General </i></a>
           <a data-value="business" class="category-search" href=""><i class="fa fa-building"> Business </i></a>
           <a data-value="entertainment" class="category-search" href=""><i class="fa fa-film"> Entertainment </i></a>
@@ -106,20 +105,27 @@
     <div class="container">
       <div class="input-field">
         <form method='get'>
-          <input type="text" placeholder="Search by Keyword" id="searchquery">
+          <input class="input-field" type="text" placeholder="Keyword Search" id="searchquery">
           <input type="submit" id="searchbtn" value="search">
           <input type="reset" id="resetbtn" value="clear"  style="margin-top:3px;">
         </form>
       </div>
-  <p></p>
+      <hr>
 
       <!--loader to show that search is running-->
       <div id="loader" style="display:none;">
-        <br />
-        <div class="progress">
-          <div class="indeterminate"></div>
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
         </div>
       </div>
+<!-- 
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div> -->
 
 
       <!-- display news results here -->
@@ -155,6 +161,7 @@
                 <option value="bad"> bad </option>
                 <option value="baffling"> baffling </option>
                 <option value="concise"> concise </option>
+                <option value="cool"> cool </option>
                 <option value="crazy"> crazy </option>
                 <option value="credible"> credible </option>
                 <option value="critical"> critical </option>
@@ -169,6 +176,7 @@
                 <option value="fake"> fake </option>
                 <option value="fantastic"> fantastic </option>
                 <option value="fascinating"> fascinating </option>
+                <option value="funny"> funny </option>
                 <option value="happy"> happy </option>
                 <option value="helpful"> helpful </option>
                 <option value="horribly written"> horribly written </option>
@@ -208,6 +216,9 @@
       </div>
     </div>
 <!--Modal: modalConfirmDelete-->
+
+
+<script> const preferred_news = {{preferred_news|safe}}</script>
 
 </body>
 </html>

@@ -124,7 +124,8 @@ def save_another_users_saved_article():
     user_id = user.user_id
     
     article_id = request.form["article_id"]
-    crud.save_subscribed_article(user_id, article_id)
+    note = request.form["note"]
+    crud.save_subscribed_article(user_id, article_id, note)
 
     return "You saved their article!"
 
@@ -181,13 +182,19 @@ def get_dashboard():
     
     logged_in_user = get_logged_in_user()
 
+    country = logged_in_user.preferred_country.country_value
+    category = logged_in_user.preferred_category.category_value
+    # preferred_news = news.get_top(country=country, category=category)
+    preferred_news = []
+
     subscriptions_list = crud.get_subsciptions_by_user(logged_in_user.user_id)
 
     print(f"Successfully logged in as {logged_in_user.fname} {logged_in_user.lname}")
     return render_template(
         'dashboard.html', 
         logged_in_user=logged_in_user,
-        subscriptions_list=subscriptions_list
+        subscriptions_list=subscriptions_list,
+        preferred_news=json.dumps(preferred_news)
     )
 
 #TODO

@@ -2,7 +2,7 @@
 
 source env/bin/activate
 source secrets.sh
-python server.py
+python3 server.py
 
 #executes rights/permissions for all of <file>
 #1-time command line
