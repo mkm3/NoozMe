@@ -2,7 +2,8 @@
     color :red
 }
 
-body {background-color:#090E41;}
+body {
+    background-color:#090E41;}
 
 input.user-search { 
     text-align: center; 
@@ -10,6 +11,11 @@ input.user-search {
 
 input.input-field { 
     text-align: center; 
+}
+
+#subscribe_btn {
+    background-color:#090E41;
+    color: #ffffff
 }
 
 .settings-container {
