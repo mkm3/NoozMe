@@ -93,7 +93,7 @@ function renderNewsCard2(news) {
         output +=`                        
                 <a target="_blank" rel="noopener noreferrer" href="${news.news_url}" class="btn btn-sm btn-outline-secondary">Read More</a>
                 </div>
-                <small class="text-muted">"${news.note}"</small>
+                <b><small class="">"${news.note}"</small></b>
                 </div>
                 </div>
                 </div>

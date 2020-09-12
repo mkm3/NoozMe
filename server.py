@@ -184,8 +184,8 @@ def get_dashboard():
 
     country = logged_in_user.preferred_country.country_value
     category = logged_in_user.preferred_category.category_value
-    # preferred_news = news.get_top(country=country, category=category)
-    preferred_news = []
+    preferred_news = news.get_top(country=country, category=category)
+    # preferred_news = []
 
     subscriptions_list = crud.get_subsciptions_by_user(logged_in_user.user_id)
 

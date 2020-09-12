@@ -95,6 +95,6 @@ $(document).ready(function(){
     find_and_populate_top_headlines($(this).data("value"));
   })
 
-  // showNews(preferred_news);
+  showNews(preferred_news);
 
 });

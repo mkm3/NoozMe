@@ -1,21 +1,24 @@
 import os
-import requests
+# import requests
 import json
-# import pycurl
-# from io import BytesIO
+
+#Script to help run News output more quickly
+import pycurl
+from io import BytesIO
 
 NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
 
-# def get_json_url(url):
-#     buffer = BytesIO()
-#     c = pycurl.Curl()
-#     c.setopt(c.URL, url)
-#     c.setopt(c.IPRESOLVE, pycurl.IPRESOLVE_V4)
-#     c.setopt(c.WRITEDATA, buffer)
-#     c.perform()
-#     c.close()
-#     res = json.loads(buffer.getvalue())
-#     return res
+#Script to help run News output more quickly
+def get_json_url(url):
+    buffer = BytesIO()
+    c = pycurl.Curl()
+    c.setopt(c.URL, url)
+    c.setopt(c.IPRESOLVE, pycurl.IPRESOLVE_V4)
+    c.setopt(c.WRITEDATA, buffer)
+    c.perform()
+    c.close()
+    res = json.loads(buffer.getvalue())
+    return res
 
 
 def convert_json(api_articles):
@@ -47,10 +50,10 @@ def get_top(country="", category=""):
     if category:
         url = url + f"&category={category}"
 
-    res = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"})
-    api_articles = res.json()['articles']
+    # res = requests.get(url)
+    # api_articles = res.json()['articles']
 
-    # api_articles = get_json_url(url)['articles']
+    api_articles = get_json_url(url)['articles']
     
     articles = convert_json(api_articles)
     return articles
@@ -64,10 +67,10 @@ def get_everything(keyword):
             '&q=' + keyword +
             '&apiKey=' + NEWS_API_KEY)
 
-    res = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (X11; CrOS x86_64 12871.102.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.141 Safari/537.36"})
-    api_articles = res.json()['articles']
+    # res = requests.get(url)
+    # api_articles = res.json()['articles']
 
-    # api_articles = get_json_url(url)['articles']
+    api_articles = get_json_url(url)['articles']
         
     articles = convert_json(api_articles)
     

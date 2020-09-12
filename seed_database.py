@@ -26,7 +26,7 @@ category5 = Category(category_value="science", category_string="Science")
 category6 = Category(category_value="sports", category_string="Sports")
 category7 = Category(category_value="technology", category_string="Technology")
 
-categories = [category1, category2, category3, category4, category5, category6]
+categories = [category1, category2, category3, category4, category5, category6, category7]
 db.session.add_all(categories)
 
 
