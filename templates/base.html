@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
     <head>  
-        <title>NoozMe - Home</title>
+        <title>NoozMe</title>
 
         <!--Favicon-->
         <link rel="apple-touch-icon" sizes="180x180" href="/static/assets/apple-touch-icon.png">
@@ -21,11 +21,11 @@
         <!-- Load Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css">
         
-        <!-- Load our stylesheet -->
-        <link rel="stylesheet"href="/static/css/styles.css">
-        
         <!-- Optional CSS for Typeahead search -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.css">
+        
+        <!-- Load our stylesheet -->
+        <link rel="stylesheet" href="/static/css/styles.css">
         
         <!-- Required JavaScript for Typeahead search -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -36,11 +36,12 @@
     </head>
 
     
-    <body>
+    <body id="bootstrap-overrides">
         <header>
 
         <!-- Navbar collapsed -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav id="noozme-nav" class="navbar navbar-expand-lg navbar-light">
+            <img src="/static/assets/NoozMeLogo2.png" width="60" height="60"></img>
             <h3><b><a class="nav-link" type="logo" href="/dashboard">NoozMe</a></b></h3>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

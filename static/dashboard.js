@@ -88,7 +88,7 @@ $(document).ready(function(){
     });
 
 
-  $(".category-search").on("click", function(e) {
+  $(".category-links").on("click", function(e) {
     e.preventDefault();
     //'this' refers to the element that was clicked
     //we use preventDefault to avoid the link default behavior <a></a>

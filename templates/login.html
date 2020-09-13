@@ -1,7 +1,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Flask Intro - login page</title>
+    <title>NoozMe Login</title>
+
+    <!--Favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/assets/favicon-16x16.png">
+    <link rel="manifest" href="/static/assets/site.webmanifest">
+    <link rel="mask-icon" href="/static/assets/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/static/assets/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/static/assets/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -23,7 +34,7 @@
         <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
         <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
         <br/>
-        <a type="register" href="/registration">Create New Account</a>
+        <a id="register-link" type="register" href="/registration">Create New Account</a>
       </form>
       {% if login %}
         <p class="login-error"><strong>Error:</strong> {{ login }}

@@ -15,7 +15,7 @@
 <header>
 
 
-  <div class="collapse bg-dark" id="navbarHeader">
+  <div class="collapse" id="navbarHeader">
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
@@ -25,7 +25,7 @@
             <div>
               <ul class="list-unstyled">
                 {% for sub in subscriptions_list %}
-                  <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
+                  <li><a class="sub-links" href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
                 {% endfor %}
               </ul>
             </div>
@@ -46,17 +46,20 @@
   </div>
 
 
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <img src="/static/assets/NoozMeLogo2.png" width="30" height="30"></img>
-        <a class="text-white">You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</a>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
+
+  <div class="container navbar navbar-dark shadow-sm">
+      <div class="offset-md-2 col-md-8">
+        <div class="text-center">
+          <span class="text-white text-center">You've successfully logged in as {{logged_in_user.fname}} {{logged_in_user.lname}}.</span>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+  </div> 
+
 
   
 </header>
@@ -77,32 +80,33 @@
                       </div>
                   </div>
               </form>
-              <br/>
 
 
     </div>
 
-  <div class="album py-5 bg-light">
+  <div class="album py-5">
     <div class="container">
 
 
-      <div class="category-section">
-        <h4>Browse by Category</h4>
-        <a data-value="general" class="category-search" href=""><i class="fa fa-globe fa-lg"> General </i></a>
-        <a data-value="business" class="category-search" href=""><i class="fa fa-building fa-lg"> Business </i></a>
-        <a data-value="entertainment" class="category-search" href=""><i class="fa fa-film fa-lg"> Entertainment </i></a>
-        <a data-value="health" class="category-search" href=""><i class="fa fa-medkit fa-lg"> Health </i></a>
-        <a data-value="science" class="category-search" href=""><i class="fa fa-flask fa-lg"> Science </i></a>
-        <a data-value="sports" class="category-search" href=""><i class="fas fa-futbol fa-lg"> Sports </i></a>
-        <a data-value="technology" class="category-search" href=""><i class="fa fa-laptop fa-lg"> Technology </i></a>
+      <div>
+        <div class="d-flex justify-content-between">
+        <a class="category-links" data-value="general" class="category-search" href=""><i class="fa fa-globe fa-lg"> General</i></a>|
+        <a class="category-links" data-value="business" class="category-search" href=""><i class="fa fa-building fa-lg"> Business</i></a>| 
+        <a class="category-links" data-value="entertainment" class="category-search" href=""><i class="fa fa-film fa-lg"> Entertainment</i></a>|
+        <a class="category-links" data-value="health" class="category-search" href=""><i class="fa fa-medkit fa-lg"> Health</i></a>|
+        <a class="category-links" data-value="science" class="category-search" href=""><i class="fa fa-flask fa-lg"> Science</i></a>|
+        <a class="category-links" data-value="sports" class="category-search" href=""><i class="fas fa-futbol fa-lg"> Sports</i></a>|
+        <a class="category-links" data-value="technology" class="category-search" href=""><i class="fa fa-laptop fa-lg"> Technology </i></a>
+        </div>
       </div>
       <br/>
 
       <div class="input-field">
         <form method='get'>
-          <input class="input-field" type="text" placeholder="Keyword Search" id="searchquery">
-          <input type="submit" id="searchbtn" value="search">
-          <input type="reset" id="resetbtn" value="clear"  style="margin-top:3px;">
+          <input class="input-field col-md-3 mb-3"type="text" placeholder="Type Keyword(s)" id="searchquery">
+          <br/>
+          <button class="keyword-btn btn" type="submit" id="searchbtn">Search</button>
+          <button class="keyword-btn btn" type="reset" id="resetbtn">Clear</button>
         </form>
       </div>
       <hr>
@@ -115,12 +119,6 @@
           </div>
         </div>
       </div>
-<!-- 
-      <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div> -->
 
 
       <!-- display news results here -->

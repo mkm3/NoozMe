@@ -19,8 +19,8 @@
     <header>
     
     
-    <div class="collapse bg-dark" id="navbarHeader">
-        <div class="container">
+    <div class="collapse" id="navbarHeader">
+        <div id="subscriptions-container" class="container">
         <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
             <h4 class="text-white">Subscriptions</h4>
@@ -29,7 +29,7 @@
                 <div>
                 <ul class="list-unstyled">
                     {% for sub in subscriptions_list %}
-                    <li><a href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
+                    <li><a class="sub-links" href="/user/{{sub.subscribe_to.user_id}}"><i class="fas fa-user-ninja"></i> {{sub.subscribe_to.fname}} {{sub.subscribe_to.lname}} - Username: {{sub.subscribe_to.username}} </a></li>
                     {% endfor %}
                 </ul>
                 </div>
@@ -50,14 +50,15 @@
     </div>
     
     
-    <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-            <img src="/static/assets/NoozMeLogo2.png" width="30" height="30"></img>
-            <a class="text-white">You're viewing {{user.fname}} {{user.lname}}'s Noozeum!</a>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <div id="nav-profile" class="navbar navbar-dark shadow-sm">
+        <div class="offset-md-2 col-md-8">
+            <div class="text-center">
+                <span class="text-white text-center">You're viewing {{user.fname}} {{user.lname}}'s Noozeum!</span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
         </button>
         </div>
     </div>
@@ -91,9 +92,9 @@
     <form id="subscribe">
         <input type="hidden" name="profile_user_id" value="{{user.user_id}}">
         {% if is_subscribed %}
-        <button id="subscribe_btn">UNSUBSCRIBE</button>
+        <button class="btn" id="subscribe_btn">UNSUBSCRIBE</button>
         {% else %}
-        <button id="subscribe_btn">SUBSCRIBE</button>
+        <button class="btn" id="subscribe_btn">SUBSCRIBE</button>
         {% endif %}
     </form>
     {% endif %}

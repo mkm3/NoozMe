@@ -13,11 +13,6 @@ input.input-field {
     text-align: center; 
 }
 
-#subscribe_btn {
-    background-color:#090E41;
-    color: #ffffff
-}
-
 .settings-container {
     color: #ffffff
 }
@@ -27,11 +22,129 @@ input.input-field {
 }
 
 .category-section {
-    display: block;
-    margin-left: auto;
-    margin-right: auto 
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .login-error {
     color: #ffffff
 }
+
+.navbar {
+    color: #39336d;
+    background-color: #39336d
+}
+
+.navbar-container {
+    color: #39336d;
+    background-color: #39336d
+}
+
+.sub-links {
+    color:#FFFFFF;
+}
+
+.category-links {
+    color:#FFFFFF;
+}
+
+.button {
+    color: #FFFFFF;
+    background-color: #39336d
+}
+
+.button a:hover{
+    color: #FFFFFF;
+    background-color: #39336d
+}
+
+.nav-item {
+    color:#FFFFFF;
+}
+
+.read-more-btn {
+    color:#FFFFFF;
+    background-color: #007cc6;
+}
+
+.save-updates-btn {
+    color:#FFFFFF;
+    background-color:#39336d;
+}
+
+#bootstrap-overrides .nav-link {
+    color:#FFFFFF;
+}
+
+#bootstrap-overrides .btn-group {
+    color: #FFFFFF;
+    background-color: #39336d
+}
+
+#bootstrap-overrides a:hover {
+    color: #FFFFFF;
+}
+
+#subscribe_btn {
+    background-color:#39336d;
+    color: #ffffff
+}
+#nav-profile {
+    color:#007cc6;
+    background-color:#007cc6
+}
+
+#subscriptions-container {
+    color: #007cc6;
+    background-color: #007cc6;
+}
+
+#remove-btn {
+    color:#FFFFFF;
+    background-color: #007cc6;
+}
+
+#save-btn {
+    color:#FFFFFF;
+    background-color: #007cc6;
+}
+
+.keyword-btn {
+    color:#FFFFFF;
+    background-color: #39336d
+}
+
+#bootstrap-overrides .card-body {
+    color:#FFFFFF;
+    background-color: #00001d
+}
+
+#bootstrap-overrides .jumbotron {
+    color:#FFFFFF;
+    background-color: #00001d
+}
+
+#bootstrap-overrides .album {
+    color:#FFFFFF;
+    background-color: #00001d
+}
+
+#noozme-nav {
+    color: #00001d;
+    background-color: #00001d
+}
+
+#navbarSupportedContent{
+    color: #00001d;
+    background-color: #00001d
+}
+
+#navbarHeader {
+    color: #39336d;
+    background-color: #39336d
+}
+
+#register-link {
+    color:#FFFFFF;
+}
+

@@ -74,10 +74,10 @@ function renderNewsCard2(news) {
                     <div class="btn-group">`
 
     if (news.origin === "saved") { // implies the article has been `saved to the database
-        output +=`<button type="button" class="remove-article-btn btn btn-sm btn-outline-secondary" data-saved_news_id="${news.saved_news_id}">Remove</button>`
+        output +=`<button id="remove-btn" type="button" class="remove-article-btn btn btn-sm btn-outline-secondary" data-saved_news_id="${news.saved_news_id}">Remove</button>`
     } else {
         output +=`                        
-                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalSaveArticle"
+                <button id="save-btn" type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#modalSaveArticle"
                 data-origin="${news.origin}"
                 data-title="${news.title}"
                 data-image="${news.image}"
@@ -91,16 +91,16 @@ function renderNewsCard2(news) {
 
     if (news.note != undefined) {
         output +=`                        
-                <a target="_blank" rel="noopener noreferrer" href="${news.news_url}" class="btn btn-sm btn-outline-secondary">Read More</a>
+                <a target="_blank" rel="noopener noreferrer" href="${news.news_url}" class="read-more-btn btn btn-sm btn-outline-secondary">Read More</a>
                 </div>
-                <b><small class="">"${news.note}"</small></b>
+                <small class="">"${news.note}"</small>
                 </div>
                 </div>
                 </div>
                 </div>`
     } else {
         output +=`                        
-                <a target="_blank" rel="noopener noreferrer" href="${news.news_url}" class="btn btn-sm btn-outline-secondary">Read More</a>
+                <a target="_blank" rel="noopener noreferrer" href="${news.news_url}" class="read-more-btn btn btn-sm btn-outline-secondary">Read More</a>
                 </div>
                 </div>
                 </div>
@@ -127,11 +127,12 @@ function showNews(news) {
     if (output !== ""){
         $("#newsResults").html(output);
 
-
+        $('#modalSaveArticle').off('show.bs.modal');
         $('#modalSaveArticle').on('show.bs.modal', function (event) {
             const button = $(event.relatedTarget)
             console.log(button.data())
             var modal = $(this)
+            $("#save-article-btn").off("click");
             modal.find('#save-article-btn').on("click", function (evt) {
                 evt.preventDefault();
                 console.log("Saved Button Clicked!");
@@ -158,6 +159,7 @@ function showNews(news) {
                     };
                     
                     $.post('/save-subscribed-article', formInputs, (res) => {
+                        $("#save-article-btn").off("click");
                         $('#modalSaveArticle').modal('hide');
                     });
                 }
