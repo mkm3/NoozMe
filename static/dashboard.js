@@ -26,8 +26,8 @@ $(document).ready(function(){
       // if user encounters an error during keyword search
       error: function(){
         let internetFailure = `
-        <div style="font-size:34px; text-align:center; margin-top:40px;">Please check your internet connection and try again.
-        <img src="img/internet.png" class="responsive-img">
+        <div class="col-md-12">
+          <p class="text-xs-center">Please check your internet connection and try again.</p>
         </div>`;
         
       $("#newsResults").html(internetFailure);
@@ -69,8 +69,8 @@ $(document).ready(function(){
           // if user encounters an error during keyword search (i.e. 404)
           error: function(){
             let internetFailure = `
-            <div style="font-size:34px; text-align:center; margin-top:40px;">Please check your internet connection and try again.
-            <img src="img/internet.png" class="responsive-img">
+            <div class="col-md-12">
+              <p class="text-xs-center">Please check your internet connection and try again.</p>
             </div>`;
             
             $("#newsResults").html(internetFailure);

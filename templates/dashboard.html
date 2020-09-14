@@ -67,43 +67,28 @@
 <main role="main">
 
   <section class="jumbotron text-center">
+
+
+
+
+
+
+  <div class="album">
     <div class="container">
-                <!-- Typeahead Search Engine to find other users -->
-                <form>
-                  <div class="typeahead__container">
-                      <div class="typeahead__field">
-                          <div class="typeahead__query">
-                              <input class="user-search" id="search-bar" type="text" placeholder="Search for Users" autocomplete="off">
-                          </div>
-                          <div class="typeahead__button">
-                          </div>
-                      </div>
-                  </div>
-              </form>
-
-
-    </div>
-
-  <div class="album py-5">
-    <div class="container">
-
-
-      <div>
-        <div class="d-flex justify-content-between">
-        <a class="category-links" data-value="general" class="category-search" href=""><i class="fa fa-globe fa-lg"> General</i></a>|
-        <a class="category-links" data-value="business" class="category-search" href=""><i class="fa fa-building fa-lg"> Business</i></a>| 
-        <a class="category-links" data-value="entertainment" class="category-search" href=""><i class="fa fa-film fa-lg"> Entertainment</i></a>|
-        <a class="category-links" data-value="health" class="category-search" href=""><i class="fa fa-medkit fa-lg"> Health</i></a>|
-        <a class="category-links" data-value="science" class="category-search" href=""><i class="fa fa-flask fa-lg"> Science</i></a>|
-        <a class="category-links" data-value="sports" class="category-search" href=""><i class="fas fa-futbol fa-lg"> Sports</i></a>|
-        <a class="category-links" data-value="technology" class="category-search" href=""><i class="fa fa-laptop fa-lg"> Technology </i></a>
-        </div>
+      <div class="d-flex justify-content-between">
+        <button class="category-links btn" data-value="general" href=""><i class="fa fa-globe fa-lg"> General</i></button>
+        <button class="category-links btn" data-value="business" href=""><i class="fa fa-building fa-lg"> Business</i></button> 
+        <button class="category-links btn" data-value="entertainment" href=""><i class="fa fa-film fa-lg"> Entertainment</i></button>
+        <button class="category-links btn" data-value="health" href=""><i class="fa fa-medkit fa-lg"> Health</i></button>
+        <button class="category-links btn" data-value="science" href=""><i class="fa fa-flask fa-lg"> Science</i></button>
+        <button class="category-links btn" data-value="sports" href=""><i class="fas fa-futbol fa-lg"> Sports</i></button>
+        <button class="category-links btn" data-value="technology" href=""><i class="fa fa-laptop fa-lg"> Technology </i></button>
       </div>
       <br/>
 
       <div class="input-field">
         <form method='get'>
-          <input class="input-field col-md-3 mb-3"type="text" placeholder="Type Keyword(s)" id="searchquery">
+          <input class="input-field col-md-3 mb-3"type="text" placeholder="Type Keyword" id="searchquery">
           <br/>
           <button class="keyword-btn btn" type="submit" id="searchbtn">Search</button>
           <button class="keyword-btn btn" type="reset" id="resetbtn">Clear</button>
@@ -169,6 +154,7 @@
                 <option value="fake"> fake </option>
                 <option value="fantastic"> fantastic </option>
                 <option value="fascinating"> fascinating </option>
+                <option value="fun"> fun </option>
                 <option value="funny"> funny </option>
                 <option value="happy"> happy </option>
                 <option value="helpful"> helpful </option>

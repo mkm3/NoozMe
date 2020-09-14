@@ -51,25 +51,17 @@ $(document).ready(function(){
               }else{
                 let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;
                   $("#newsResults").html(noNews);
-                M.toast({
-                  html: "This news isn't available",
-                  classes: 'red'
-                });
               }
               
             },
             // if user encounters an error during keyword search
             error: function(){
                 let internetFailure = `
-                <div style="font-size:34px; text-align:center; margin-top:40px;">Please check your internet connection and try again.
-                <img src="img/internet.png" class="responsive-img">
+                <div class="col-md-12">
+                  <p class="text-xs-center">Please check your internet connection and try again.</p>
                 </div>`;
 
               $("#newsResults").html(internetFailure);
-                M.toast({
-                  html: "We encountered an error, please try again",
-                  classes: 'red'
-                });
             }
             
             
@@ -78,10 +70,6 @@ $(document).ready(function(){
         }else{
           let missingVal = `<div style="font-size:34px; text-align:center; margin-top:40px;">Please enter any search term in the search engine</div>`;
           $("#newsResults").html(missingVal);
-            M.toast({
-                  html: "Please enter something",
-                  classes: 'red'
-                });
         }
         
       });

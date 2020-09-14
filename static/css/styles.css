@@ -17,7 +17,7 @@ input.input-field {
     color: #ffffff
 }
 
-.registration-container {
+.registeration-container {
     color: #ffffff
 }
 
@@ -44,8 +44,19 @@ input.input-field {
     color:#FFFFFF;
 }
 
+.sub-links:hover {
+    color:#007cc6;
+}
+
 .category-links {
     color:#FFFFFF;
+    background-color: #39336d;
+}
+
+.category-links:hover {
+    color:#FFFFFF;
+    background-color:#007cc6;
+    ;
 }
 
 .button {
@@ -67,13 +78,28 @@ input.input-field {
     background-color: #007cc6;
 }
 
+.read-more-btn:hover {
+    color:#FFFFFF;
+    background-color: #39336d;
+}
+
 .save-updates-btn {
     color:#FFFFFF;
     background-color:#39336d;
 }
 
+.save-updates-btn:hover {
+    color:#FFFFFF;
+    background-color:#007cc6;
+}
+
+
 #bootstrap-overrides .nav-link {
     color:#FFFFFF;
+}
+
+#bootstrap-overrides .nav-link:hover {
+    color:#007cc6;
 }
 
 #bootstrap-overrides .btn-group {
@@ -83,6 +109,16 @@ input.input-field {
 
 #bootstrap-overrides a:hover {
     color: #FFFFFF;
+}
+
+#login-btn {
+    color:#ffffff;
+    background-color:#007cc6
+}
+
+#login-btn:hover {
+    color:#ffffff;
+    background-color:#455E75
 }
 
 #subscribe_btn {
@@ -104,19 +140,36 @@ input.input-field {
     background-color: #007cc6;
 }
 
+#remove-btn:hover {
+    color:#FFFFFF;
+    background-color: #39336d;
+}
+
 #save-btn {
     color:#FFFFFF;
     background-color: #007cc6;
+}
+
+#save-btn:hover {
+    color:#FFFFFF;
+    background-color: #39336d;
 }
 
 .keyword-btn {
     color:#FFFFFF;
     background-color: #39336d
 }
+.keyword-btn:hover {
+    color:#FFFFFF;
+    background-color: #007cc6;
+}
+
+#bootstrap-overrides .card {
+    background-color: #252F6D;
+}
 
 #bootstrap-overrides .card-body {
-    color:#FFFFFF;
-    background-color: #00001d
+    background-color: #252F6D;
 }
 
 #bootstrap-overrides .jumbotron {
@@ -147,4 +200,15 @@ input.input-field {
 #register-link {
     color:#FFFFFF;
 }
+
+#register-btn {
+    color:#FFFFFF;
+    background-color: #39336d;
+}
+
+#register-btn:hover {
+    color:#FFFFFF;
+    background-color: #007cc6;
+}
+
 

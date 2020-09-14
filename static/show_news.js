@@ -189,7 +189,11 @@ function showNews(news) {
         });
     
     } else {
-        let noNews = `<div style='text-align:center; font-size:36px; margin-top:40px;'>This news isn't available. Sorry about that.<br>Try searching for something else </div>`;
+        let noNews = `
+                    <div class="col-md-12">
+                    <p class="text-xs-center">This news isn't available. Try searching for something else.</p>
+                    </div>`;
+        // $("#newsResults").class("");
         $("#newsResults").html(noNews);
     }  
 
