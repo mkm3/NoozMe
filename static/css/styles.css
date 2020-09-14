@@ -164,11 +164,13 @@ input.input-field {
     background-color: #007cc6;
 }
 
+.type-ahead-results:hover {
+    color: #007cc6;
+}
+
 #bootstrap-overrides .card {
     background-color: #252F6D;
 }
-
-
 
 #bootstrap-overrides .jumbotron {
     color:#FFFFFF;

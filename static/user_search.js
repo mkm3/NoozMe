@@ -3,7 +3,9 @@ $(document).ready(function(){
     $.typeahead({
         input: '#search-bar',
         template: function(query, item) {
-            return '<span>{{fname}} {{lname}}  -- {{username}} ({{total_articles}})</span>'
+            return `<div class="type-ahead-results">
+                        <span>{{fname}} {{lname}}  - {{username}} ({{total_articles}})</span>
+                    </div>`
         },
         display: ["username", "fname", "lname"],
         source: {
