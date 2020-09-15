@@ -63,10 +63,10 @@ All the prerequisites are in the requirements.txt file
 
 ## Using NoozMe
 ### 1. Register as a new user or login to your account
-![](https://media.giphy.com/media/chWR7KMLoMaOudxoGc/source.mp4)
+![](/static/assets/gifs/register.gif)
 
 ### 2. Browse Articles
-
+![](/static/assets/gifs/browse.gif)
 
 ### 3. Save articles to your Noozeum
 
@@ -75,7 +75,6 @@ All the prerequisites are in the requirements.txt file
 
 
 ### 5. Explore and subscribe to other users Noozeums!
-<!-- ![](/static/imgs/profile-page.png) -->
 
 
 ## Author 
