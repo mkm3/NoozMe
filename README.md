@@ -74,7 +74,7 @@ python3 server.py
 ![](https://github.com/mkm3/NoozMe/blob/master/static/assets/gifs/save.gif "Save Articles")
 
 ### 4. Search and subscribe to other users Noozeums!
-![]()
+![](https://github.com/mkm3/NoozMe/blob/master/static/assets/gifs/subscribe.gif "Subscribe to other Noozeums")
 
 
 ## Author 
