@@ -6,6 +6,8 @@ import json
 import pycurl
 from io import BytesIO
 
+from urllib.parse import urlencode, quote_plus
+
 NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
 
 #Script to help run News output more quickly
@@ -17,7 +19,8 @@ def get_json_url(url):
     c.setopt(c.WRITEDATA, buffer)
     c.perform()
     c.close()
-    res = json.loads(buffer.getvalue())
+    value = buffer.getvalue()
+    res = json.loads(value)
     return res
 
 
@@ -62,13 +65,16 @@ def get_top(country="", category=""):
 #TODO limit results
 def get_everything(keyword):
     """converts json response - for everything endpoint"""
-    url = ( 'http://newsapi.org/v2/everything?' +
-            'language=en' +
-            '&q=' + keyword +
-            '&apiKey=' + NEWS_API_KEY)
+    url = 'http://newsapi.org/v2/everything?'
 
-    # res = requests.get(url)
-    # api_articles = res.json()['articles']
+    payload = {
+        "language" : "en",
+        "q" : keyword,
+        "apiKey" : NEWS_API_KEY
+    }
+
+    url_encoded_payload = urlencode(payload, quote_via=quote_plus)
+    url = url + url_encoded_payload
 
     api_articles = get_json_url(url)['articles']
         
