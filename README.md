@@ -67,16 +67,17 @@ python3 server.py
 ### 1. Register as a new user or login to your account
 ![](https://github.com/mkm3/NoozMe/blob/master/static/assets/gifs/register.gif "Register or Login")
 
-### 2. Browse Articles
+### 2. Browse articles
 ![](https://github.com/mkm3/NoozMe/blob/master/static/assets/gifs/browse.gif "Browse Articles")
 
 ### 3. Save articles to your Noozeum
+![]()
 
-https://github.com/mkm3/NoozMe/blob/master/static/assets/NoozMeLogo.gif
 ### 4. Search for other users
-
+![]()
 
 ### 5. Explore and subscribe to other users Noozeums!
+![]()
 
 
 ## Author 
