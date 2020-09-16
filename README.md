@@ -2,7 +2,7 @@
 ![](https://github.com/mkm3/NoozMe/blob/master/static/assets/NoozMeLogo.gif "NoozMe")	
 
 ## About
-NoozMe creates a succinct and organized version of news sharing that ties in a subscriber element to the experience. NoozMe lets the user browse articles quickly while also allowing them to build a mini-museum of saved articles that other users can view.
+For my web application, I was interested in creating a succinct and organized version of news sharing that tied in a subscriber element to the experience. This sparked my desire to build, NoozMe. NoozMe lets the user browse articles quickly while also allowing them to build a mini-museum of saved articles that other users can view. 
 
 ## API
 [News API](https://newsapi.org/)
