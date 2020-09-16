@@ -64,10 +64,10 @@ python3 server.py
 
 ## Using NoozMe
 ### 1. Register as a new user or login to your account
-![](static/assets/gifs/register.gif)
+![](https://github.com/mkm3/NoozMe/blob/master/static/assets/gifs/register.gif "Register or Login")
 
 ### 2. Browse Articles
-![](static/assets/gifs/browse.gif)
+![](https://github.com/mkm3/NoozMe/blob/master/static/assets/gifs/browse.gif "Browse Articles")
 
 ### 3. Save articles to your Noozeum
 
