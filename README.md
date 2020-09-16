@@ -1,4 +1,5 @@
-# NoozMe :newspaper:	
+# NoozMe
+![](https://github.com/mkm3/NoozMe/blob/master/static/assets/NoozMeLogo.gif "NoozMe")	
 
 ## About
 NoozMe creates a succinct and organized version of news sharing that ties in a subscriber element to the experience. NoozMe lets the user browse articles quickly while also allowing them to build a mini-museum of saved articles that other users can view. The inspiration for my project stems from my passion with journalism and keeping up with current events. In a day an age where anyone can share an article without any context, NoozMe serves as a perfect solution to tailormade and customize that experience!
@@ -71,7 +72,7 @@ python3 server.py
 
 ### 3. Save articles to your Noozeum
 
-
+https://github.com/mkm3/NoozMe/blob/master/static/assets/NoozMeLogo.gif
 ### 4. Search for other users
 
 
