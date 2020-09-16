@@ -40,24 +40,25 @@ NoozMe creates a succinct and organized version of news sharing that ties in a s
 ## Installation
 
 ### Virtual Environment
-Create a virtual environment to install requirements 
+Create a virtual environment to install requirements
 
-    ```sh
-    $ virtualenv
-    $ source env/bin/activate
-    ```
+```sh
+$ virtualenv
+$ source env/bin/activate
+```
 
 ### Prerequisites
 All the prerequisites are in the requirements.txt file 
 
-    ```sh
-    pip3 install -r requirements.txt
-    ```
+```sh
+pip3 install -r requirements.txt
+```
 
 ### Run Server 
-    ```sh
-    python3 server.py
-    ```
+
+```sh
+python3 server.py
+```
 
 
 
