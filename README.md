@@ -71,12 +71,9 @@ python3 server.py
 ![](https://github.com/mkm3/NoozMe/blob/master/static/assets/gifs/browse.gif "Browse Articles")
 
 ### 3. Save articles to your Noozeum
-![]()
+![](https://github.com/mkm3/NoozMe/blob/master/static/assets/gifs/save.gif "Save Articles")
 
-### 4. Search for other users
-![]()
-
-### 5. Explore and subscribe to other users Noozeums!
+### 4. Search and subscribe to other users Noozeums!
 ![]()
 
 
